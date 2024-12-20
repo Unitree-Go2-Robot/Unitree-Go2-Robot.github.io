@@ -11,10 +11,10 @@ Our current leadership team includes:
 +--------------------------------+-----------------------------+-------------+--------------+
 | Name                           | Organization                | GitHub ID   | Current Role |
 +================================+=============================+=============+==============+
-| Juan Carlos Manzanares Serrano | Rey Juan Carlos University  | Juancams_     | Dev Team |
-+--------------------------------+-----------------------------+---------------+----------+
-| Juan S. Cely Gutiérrez         | Rey Juan Carlos University  | juanscelyg_   | Dev Team |
-+--------------------------------+-----------------------------+---------------+----------+
+| Juan Carlos Manzanares Serrano | Rey Juan Carlos University  | Juancams_   | Dev Team     |
++--------------------------------+-----------------------------+-------------+--------------+
+| Juan S. Cely Gutiérrez         | Rey Juan Carlos University  | juanscelyg_ | Dev Team     |
++--------------------------------+-----------------------------+-------------+--------------+
 
 .. _Juancams: https://github.com/Juancams
 .. _juanscelyg: https://github.com/juanscelyg
