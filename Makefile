@@ -10,13 +10,13 @@ endif
 # You can set these variables from the command line.
 SPHINXOPTS    ?= -q
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = "ROS2 Planning System Documentation"
+SPHINXPROJ    = "Go2 Robot Documentation"
 SOURCEDIR     = .
 BUILDDIR      = _build
 
 DOC_TAG      ?= development
 RELEASE      ?= latest
-PUBLISHDIR    = /tmp/plansys2
+PUBLISHDIR    = /tmp/go2_robot
 
 # Put it first so that "make" without argument is like "make help".
 help:
@@ -44,11 +44,11 @@ clean:
 # along with a README
 
 publish:
-	git clone --reference . https://github.com/PlanSys2/PlanSys2.github.io.git $(PUBLISHDIR)
+	git clone --reference . https://github.com/Unitree-Go2-Robot/Unitree-Go2-Robot.github.io.git $(PUBLISHDIR)
 	cd $(PUBLISHDIR) && \
 	git checkout gh-pages && \
-	git config user.email "fmrico@gmail.com" && \
-	git config user.name "fmrico"
+	git config user.email "juancarlos.serrano@urjc.es" && \
+	git config user.name "Juancams"
 	rm -fr $(PUBLISHDIR)/*
 	cp -r $(BUILDDIR)/html/* $(PUBLISHDIR)
 	cp scripts/.nojekyll $(PUBLISHDIR)/.nojekyll
