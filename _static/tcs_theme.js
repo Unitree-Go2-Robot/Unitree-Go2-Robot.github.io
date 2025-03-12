@@ -111,3 +111,23 @@ addVersionDropdown([
     { name: "Humble", url: "https://docs.ros.org/en/humble/" },
     { name: "Foxy", url: "https://docs.ros.org/en/foxy/" },
 ]);
+
+function switchVersion(version) {
+  var baseUrl = window.location.origin + window.location.pathname;
+  var newUrl = baseUrl.replace(/\/(humble|rolling|galactic|foxy)\//, '/' + version + '/');
+  window.location.href = newUrl;
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  var currentVersion = window.location.pathname.split('/')[1];
+  var versionSelect = document.getElementById('version-select');
+  if (versionSelect) {
+      for (var i = 0; i < versionSelect.options.length; i++) {
+          if (versionSelect.options[i].value === currentVersion) {
+              versionSelect.selectedIndex = i;
+              break;
+          }
+      }
+  }
+});
+

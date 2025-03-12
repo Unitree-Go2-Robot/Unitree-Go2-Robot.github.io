@@ -191,3 +191,13 @@ th,td {
 .version-dropdown .collapsible.active {
   background-color: #ccc;
 }
+
+#version-dropdown {
+  padding: 10px;
+  text-align: center;
+}
+
+#version-select {
+  padding: 5px;
+  font-size: 1em;
+}
