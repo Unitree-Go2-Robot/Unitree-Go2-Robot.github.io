@@ -15,8 +15,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  position: relative;
-  padding-bottom: 50px;
+  position: absolute;
 }
 
 .wy-side-nav-search {
@@ -179,9 +178,10 @@ th,td {
 
 /* Estilos del desplegable de versiones */
 .version-dropdown {
-  position: fixed;
-  bottom: -15px;
-  width: 14%;
+  position: absolute;
+  bottom: -13px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .version-dropdown .collapsible {
