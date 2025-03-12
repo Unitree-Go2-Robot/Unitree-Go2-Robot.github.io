@@ -52,27 +52,23 @@ for (i = 0; i < contents.length; i++) {
 
 // Crear el desplegable de versiones en la barra lateral
 function addVersionDropdown(versions) {
-    // Crear el contenedor para el desplegable
     var versionContainer = document.createElement("div");
     versionContainer.className = "version-dropdown";
     versionContainer.style.margin = "10px";
     versionContainer.style.padding = "5px";
 
-    // Crear el botón de desplegable
     var versionButton = document.createElement("BUTTON");
     versionButton.className = "collapsible";
-    versionButton.innerHTML = "Versiones";
+    versionButton.innerHTML = "ROS 2 Versions";
     versionButton.style.width = "100%";
     versionButton.style.textAlign = "left";
 
-    // Crear la lista de versiones
     var versionList = document.createElement("div");
     versionList.className = "content";
     versionList.style.maxHeight = "0";
     versionList.style.overflow = "hidden";
     versionList.style.transition = "max-height 0.2s ease-out";
 
-    // Añadir cada versión a la lista
     versions.forEach(function(version) {
         var versionLink = document.createElement("a");
         versionLink.href = version.url;
@@ -80,11 +76,10 @@ function addVersionDropdown(versions) {
         versionLink.style.display = "block";
         versionLink.style.padding = "5px 0";
         versionLink.style.textDecoration = "none";
-        versionLink.style.color = "black";
+        versionLink.style.color = "white";
         versionList.appendChild(versionLink);
     });
 
-    // Añadir la funcionalidad de colapsado al botón
     versionButton.addEventListener("click", function() {
         this.classList.toggle("active");
         if (versionList.style.maxHeight != "0px") {
@@ -94,40 +89,19 @@ function addVersionDropdown(versions) {
         }
     });
 
-    // Añadir el botón y la lista al contenedor
     versionContainer.appendChild(versionButton);
     versionContainer.appendChild(versionList);
 
-    // Insertar el contenedor en la barra lateral
     var sidebar = document.querySelector(".wy-side-scroll");
     if (sidebar) {
         sidebar.appendChild(versionContainer);
     }
 }
 
-// Llamar a la función con las versiones deseadas
 addVersionDropdown([
     { name: "Rolling", url: "https://docs.ros.org/en/rolling/" },
     { name: "Humble", url: "https://docs.ros.org/en/humble/" },
     { name: "Foxy", url: "https://docs.ros.org/en/foxy/" },
 ]);
 
-function switchVersion(version) {
-  var baseUrl = window.location.origin + window.location.pathname;
-  var newUrl = baseUrl.replace(/\/(humble|rolling|galactic|foxy)\//, '/' + version + '/');
-  window.location.href = newUrl;
-}
-
-window.addEventListener('DOMContentLoaded', function () {
-  var currentVersion = window.location.pathname.split('/')[1];
-  var versionSelect = document.getElementById('version-select');
-  if (versionSelect) {
-      for (var i = 0; i < versionSelect.options.length; i++) {
-          if (versionSelect.options[i].value === currentVersion) {
-              versionSelect.selectedIndex = i;
-              break;
-          }
-      }
-  }
-});
 
