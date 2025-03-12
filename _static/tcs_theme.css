@@ -170,3 +170,24 @@ th,td {
     display: inline;
     margin-left: 20px;
 }
+
+.version-dropdown .collapsible {
+  background-color: #f2f2f2;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 8px;
+  width: 100%;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.version-dropdown .content a:hover {
+  background-color: #ddd;
+}
+
+.version-dropdown .collapsible.active {
+  background-color: #ccc;
+}
