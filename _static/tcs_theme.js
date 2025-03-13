@@ -127,13 +127,14 @@ function updateSidebarLinks(version) {
   sidebarLinks.forEach(function(link) {
     console.log("Enlace original: " + link.href);  // Mostrar enlace original
 
-    // Verificar si el enlace necesita actualización
     var url = new URL(link.href);
     var pathParts = url.pathname.split('/');
 
     // Si la versión es "Humble", la URL debe ser solo "index.html"
-    if (version === "Humble" && !url.pathname.endsWith('index.html')) {
-      url.pathname = '/index.html';
+    if (version === "Humble") {
+      if (!url.pathname.endsWith('index.html')) {
+        url.pathname = '/index.html';  // Forzar que apunte solo a "index.html"
+      }
     }
     // Si no es "Humble", la URL debe incluir la versión en la ruta
     else if (version !== "Humble" && !url.pathname.includes(version.toLowerCase())) {
@@ -154,6 +155,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 addVersionDropdown([
-  { name: "Humble", url: "https://unitree-go2-robot.github.io/humble/index.html" },
+  { name: "Humble", url: "https://unitree-go2-robot.github.io/index.html" },  // Cambié aquí la URL
+  { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/index.html" },
+  { name: "Rolling", url: "https://unitree-go2-robot.github.io/rolling/index.html" },
+]);
+
+
+addVersionDropdown([
+  { name: "Humble", url: "https://unitree-go2-robot.github.io/index.html" },
   { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/index.html" }
 ]);
