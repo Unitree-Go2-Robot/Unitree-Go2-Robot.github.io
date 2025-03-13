@@ -2,7 +2,6 @@ var i;
 var contents = document.getElementsByClassName("content-collapse section");
 
 for (i = 0; i < contents.length; i++) {
-
   //Make sure the "content-collapse section" class is occurring in <div>
   if (contents[i].tagName.toLowerCase() == 'div') {
     var element = contents[i].children[0];
@@ -32,17 +31,17 @@ for (i = 0; i < contents.length; i++) {
       btn.addEventListener("click", function() {
         this.classList.toggle("active");
         var content = this.nextElementSibling;
-        if (content.style.maxHeight != "0px"){
+        if (content.style.maxHeight != "0px") {
           content.style.maxHeight = 0;
         } else {
           content.style.maxHeight = content.scrollHeight + "px";
-        } 
+        }
       });
 
       //Add the button to the page and remove the header
       contents[i].parentNode.insertBefore(btn, contents[i]);
       contents[i].removeChild(element);
-    }else{
+    } else {
       //reset span id if it isn't followed by Hx element
       spanElement.id = span_id;
     }
@@ -82,32 +81,33 @@ function addVersionDropdown(versions) {
   versionList.style.transition = "max-height 0.2s ease-out";
 
   versions.forEach(function(version) {
-      var versionLink = document.createElement("a");
-      versionLink.href = version.url;
-      versionLink.innerHTML = version.name;
-      versionLink.style.display = "block";
-      versionLink.style.padding = "5px 0";
-      versionLink.style.textDecoration = "none";
-      versionLink.style.color = "white";
+    var versionLink = document.createElement("a");
+    versionLink.href = version.url;
+    versionLink.innerHTML = version.name;
+    versionLink.style.display = "block";
+    versionLink.style.padding = "5px 0";
+    versionLink.style.textDecoration = "none";
+    versionLink.style.color = "white";
 
-      versionLink.addEventListener("click", function() {
-          // Guardar la versión actual en el almacenamiento local
-          localStorage.setItem("ros2_version", version.name);
-          currentVersionText.innerHTML = " (current: " + version.name + ")";
-          versionList.style.maxHeight = "0";
-          window.location.href = version.url;  // Navegar a la nueva URL
-      });
+    versionLink.addEventListener("click", function() {
+      // Guardar la versión actual en el almacenamiento local
+      localStorage.setItem("ros2_version", version.name);
+      currentVersionText.innerHTML = " (current: " + version.name + ")";
+      versionList.style.maxHeight = "0";
+      updateSidebarLinks(version.name);  // Actualizar enlaces al cambiar de versión
+      window.location.href = version.url;
+    });
 
-      versionList.appendChild(versionLink);
+    versionList.appendChild(versionLink);
   });
 
   versionButton.addEventListener("click", function() {
-      this.classList.toggle("active");
-      if (versionList.style.maxHeight != "0px") {
-          versionList.style.maxHeight = "0";
-      } else {
-          versionList.style.maxHeight = versionList.scrollHeight + "px";
-      }
+    this.classList.toggle("active");
+    if (versionList.style.maxHeight != "0px") {
+      versionList.style.maxHeight = "0";
+    } else {
+      versionList.style.maxHeight = versionList.scrollHeight + "px";
+    }
   });
 
   versionContainer.appendChild(versionButton);
@@ -115,12 +115,34 @@ function addVersionDropdown(versions) {
 
   var sidebar = document.querySelector(".wy-side-scroll");
   if (sidebar) {
-      sidebar.appendChild(versionContainer);
+    sidebar.appendChild(versionContainer);
   }
 }
+
+// Actualizar los enlaces de la barra lateral según la versión
+function updateSidebarLinks(version) {
+  var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
+  sidebarLinks.forEach(function(link) {
+    // Verificar si el enlace necesita actualización
+    if (!link.href.includes(version.toLowerCase())) {
+      var url = new URL(link.href);
+      var pathParts = url.pathname.split('/');
+      if (pathParts.length > 1) {
+        pathParts[1] = version.toLowerCase();
+        url.pathname = pathParts.join('/');
+        link.href = url.toString();
+      }
+    }
+  });
+}
+
+// Llamar a la función al cargar la página para actualizar los enlaces
+document.addEventListener("DOMContentLoaded", function () {
+  var currentVersion = localStorage.getItem("ros2_version") || "Humble";
+  updateSidebarLinks(currentVersion);
+});
 
 addVersionDropdown([
   { name: "Humble", url: "https://unitree-go2-robot.github.io/index.html" },
   { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/index.html" },
 ]);
-
