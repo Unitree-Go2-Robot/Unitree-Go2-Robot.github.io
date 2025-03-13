@@ -114,6 +114,6 @@ function addVersionDropdown(versions) {
 }
 
 addVersionDropdown([
-  { name: "Humble", url: "https://unitree-go2-robot.github.io/" },
-  { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/" },
+  { name: "Humble", url: "https://unitree-go2-robot.github.io/index.html" },
+  { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/index.html" },
 ]);
