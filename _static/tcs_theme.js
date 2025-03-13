@@ -155,13 +155,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 addVersionDropdown([
-  { name: "Humble", url: "https://unitree-go2-robot.github.io/index.html" },  // Cambié aquí la URL
-  { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/index.html" },
-  { name: "Rolling", url: "https://unitree-go2-robot.github.io/rolling/index.html" },
-]);
-
-
-addVersionDropdown([
   { name: "Humble", url: "https://unitree-go2-robot.github.io/index.html" },
   { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/index.html" }
 ]);
