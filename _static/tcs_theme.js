@@ -64,7 +64,10 @@ function addVersionDropdown(versions) {
 
   var currentVersionText = document.createElement("span");
   currentVersionText.className = "current-version";
-  currentVersionText.innerHTML = " (current: Humble)";
+
+  // Obtener la versión actual desde el almacenamiento local o usar "Humble" como predeterminada
+  var currentVersion = localStorage.getItem("ros2_version") || "Humble";
+  currentVersionText.innerHTML = " (current: " + currentVersion + ")";
 
   versionButton.appendChild(versionText);
   versionButton.appendChild(currentVersionText);
@@ -88,8 +91,11 @@ function addVersionDropdown(versions) {
       versionLink.style.color = "white";
 
       versionLink.addEventListener("click", function() {
+          // Guardar la versión actual en el almacenamiento local
+          localStorage.setItem("ros2_version", version.name);
           currentVersionText.innerHTML = " (current: " + version.name + ")";
           versionList.style.maxHeight = "0";
+          window.location.href = version.url;  // Navegar a la nueva URL
       });
 
       versionList.appendChild(versionLink);
@@ -117,3 +123,4 @@ addVersionDropdown([
   { name: "Humble", url: "https://unitree-go2-robot.github.io/index.html" },
   { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/index.html" },
 ]);
+
