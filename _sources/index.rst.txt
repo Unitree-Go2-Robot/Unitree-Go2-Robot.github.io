@@ -1,33 +1,3 @@
-.. _documentation_home:
-
-*****
-|LPN|
-*****
 .. raw:: html
 
-    <h1 align="center">
-      <div>
-        <div style="position: relative; padding-bottom: 0%; overflow: hidden; max-width: 100%; height: auto;">
-          <p align="center">
-            <img width="1280" height="420" src="https://github.com/IntelligentRoboticsLabs/go2_robot/assets/44479765/da616d77-cf4d-4acf-af2f-adc99f4f72d7" alt="Go2 Banner">
-          </p>
-        </div>
-      </div>
-    </h1>
-
-Overview
-########
-
-This repository for the unitree go 2 robot aims to use a wrapper to provide ros 2 users with a more familiar environment, with topics and services that allow them to know the status of the robot, to be able to teleoperate it, or to have it perform different actions.
-
-In addition, you can also find packages to make your robot able to navigate or simulate it.
-
-We hope that this repository will be of great help to the entire community, and of course we invite everyone to contribute to this `Open Source project in GitHub <https://github.com/Unitree-Go2-Robot>`_ !!!
-
-
-.. toctree::
-   :hidden:
-
-   humble/about/index.rst
-   humble/build/index.rst
-   
+   <meta http-equiv="refresh" content="0; URL=humble/index.html">
