@@ -122,7 +122,12 @@ function addVersionDropdown(versions) {
 // Actualizar los enlaces de la barra lateral según la versión
 function updateSidebarLinks(version) {
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
+  console.log("Versión actual: " + version);  // Comprobación de la versión
+  console.log("Número de enlaces encontrados: " + sidebarLinks.length);  // Número de enlaces
+
   sidebarLinks.forEach(function(link) {
+    console.log("Enlace original: " + link.href);  // Mostrar enlace original
+
     // Verificar si el enlace necesita actualización
     if (!link.href.includes(version.toLowerCase())) {
       var url = new URL(link.href);
@@ -131,10 +136,12 @@ function updateSidebarLinks(version) {
         pathParts[1] = version.toLowerCase();
         url.pathname = pathParts.join('/');
         link.href = url.toString();
+        console.log("Enlace actualizado: " + link.href);  // Mostrar enlace actualizado
       }
     }
   });
 }
+
 
 // Llamar a la función al cargar la página para actualizar los enlaces
 document.addEventListener("DOMContentLoaded", function () {
