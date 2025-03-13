@@ -179,7 +179,7 @@ th,td {
 /* Estilos del desplegable de versiones */
 .version-dropdown {
   position: absolute;
-  bottom: -13px;
+  bottom: -20px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -191,14 +191,24 @@ th,td {
   cursor: pointer;
   padding: 8px;
   width: 100%;
-  text-align: left;
-  font-size: 14px;
-  border-radius: 100px;
+  text-align: left
   margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
   color: rgb(0, 0, 0); /* Cambiar el texto del botón a blanco */
+  align-items: center;
 }
 
 .version-dropdown .content a:hover {
   background-color: #ded0d0; /* Fondo gris oscuro al pasar el ratón */
 }
 
+.version-dropdown .collapsible span.version-text {
+  font-size: 13px;  /* Tamaño para "ROS 2 Versions" */
+}
+
+.version-dropdown .collapsible span.current-version {
+  font-size: 11px;  /* Tamaño para "current: ..." */
+  color: gray;  /* Color más tenue para la versión actual */
+  margin-left: auto; /* Esto moverá el texto de la versión actual a la derecha */
+}

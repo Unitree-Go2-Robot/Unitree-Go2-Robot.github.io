@@ -57,7 +57,18 @@ function addVersionDropdown(versions) {
 
   var versionButton = document.createElement("BUTTON");
   versionButton.className = "collapsible";
-  versionButton.innerHTML = "Versiones";
+
+  var versionText = document.createElement("span");
+  versionText.className = "version-text";
+  versionText.innerHTML = "ROS 2 Versions";
+
+  var currentVersionText = document.createElement("span");
+  currentVersionText.className = "current-version";
+  currentVersionText.innerHTML = " (current: Humble)";
+
+  versionButton.appendChild(versionText);
+  versionButton.appendChild(currentVersionText);
+
   versionButton.style.width = "100%";
   versionButton.style.textAlign = "left";
 
@@ -75,6 +86,12 @@ function addVersionDropdown(versions) {
       versionLink.style.padding = "5px 0";
       versionLink.style.textDecoration = "none";
       versionLink.style.color = "white";
+
+      versionLink.addEventListener("click", function() {
+          currentVersionText.innerHTML = " (current: " + version.name + ")";
+          versionList.style.maxHeight = "0";
+      });
+
       versionList.appendChild(versionLink);
   });
 
@@ -97,7 +114,6 @@ function addVersionDropdown(versions) {
 }
 
 addVersionDropdown([
-  { name: "Rolling", url: "https://docs.ros.org/en/rolling/" },
-  { name: "Humble", url: "https://docs.ros.org/en/humble/" },
-  { name: "Foxy", url: "https://docs.ros.org/en/foxy/" },
+  { name: "Humble", url: "https://unitree-go2-robot.github.io/" },
+  { name: "Foxy", url: "https://unitree-go2-robot.github.io/foxy/" },
 ]);
