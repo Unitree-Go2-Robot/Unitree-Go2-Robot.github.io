@@ -20,8 +20,6 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="About" href="../../about/index.html" />
-    <link rel="prev" title="Build in your computer" href="../computer/index.html" />
 
 <link rel="stylesheet" href="../../../_static/tcs_theme.css" type="text/css" />
 
@@ -48,24 +46,24 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Build</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../computer/index.html">Build in your computer</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../computer/index.html#install-ros-2">Install ROS 2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../computer/index.html#build-go2-robot-packages">Build Go2 Robot packages</a></li>
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../humble/build/index.html">Build</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../humble/build/computer/index.html">Build in your computer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../humble/build/computer/index.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../humble/build/computer/index.html#build-go2-robot-packages">Build Go2 Robot packages</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Build into the robot</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#connect-to-the-robot">Connect to the robot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#build-go2-robot-packages">Build Go2 Robot packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../humble/build/robot/index.html">Build into the robot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../humble/build/robot/index.html#connect-to-the-robot">Connect to the robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../humble/build/robot/index.html#build-go2-robot-packages">Build Go2 Robot packages</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../about/index.html">About</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../about/index.html#id1">About</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../about/index.html#contact">Contact</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../about/index.html#acknowledgements">Acknowledgements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../humble/about/index.html">About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../humble/about/index.html#id1">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../humble/about/index.html#contact">Contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../humble/about/index.html#acknowledgements">Acknowledgements</a></li>
 </ul>
 </li>
 </ul>
@@ -86,7 +84,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Build</a></li>
       <li class="breadcrumb-item active">Build into the robot</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -97,7 +94,7 @@
            <div itemprop="articleBody">
              
   <section id="build-into-the-robot">
-<span id="humble-robot-build"></span><h1>Build into the robot<a class="headerlink" href="#build-into-the-robot" title="Link to this heading"></a></h1>
+<span id="foxy-robot-build"></span><h1>Build into the robot<a class="headerlink" href="#build-into-the-robot" title="Link to this heading"></a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For this guide we will assume that you have an SSH connection to the robot and that it also has an internet connection.</p>
@@ -109,14 +106,14 @@
 </pre></div>
 </div>
 <p>Afterwards, you’ll see that a connection has been established, and at startup, you’ll have to choose which version of ROS you’re going to use. Click option 1, choosing ROS 2 Foxy.</p>
-<a class="reference internal image-reference" href="../../../_images/ssh_unitree1.png"><img alt="Go2 Robot SSH connection &amp; select ROS 2 Foxy" class="align-center" src="../../../_images/ssh_unitree1.png" style="width: 800px;" />
+<a class="reference internal image-reference" href="../../../_images/ssh_unitree.png"><img alt="Go2 Robot SSH connection &amp; select ROS 2 Foxy" class="align-center" src="../../../_images/ssh_unitree.png" style="width: 800px;" />
 </a>
 <br><br></section>
 <section id="build-go2-robot-packages">
 <h2>Build Go2 Robot packages<a class="headerlink" href="#build-go2-robot-packages" title="Link to this heading"></a></h2>
 <p>First we are going to prepare our workspace where we are going to add the necessary packages</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/cyclonedds_ws/src
-wget<span class="w"> </span>-qO-<span class="w"> </span>https://raw.githubusercontent.com/Unitree-Go2-Robot/go2_robot/refs/heads/humble/dependencies.repos<span class="w"> </span><span class="p">|</span><span class="w"> </span>vcs<span class="w"> </span>import<span class="w"> </span>.
+wget<span class="w"> </span>-qO-<span class="w"> </span>https://raw.githubusercontent.com/Unitree-Go2-Robot/go2_robot/refs/heads/foxy/dependencies.repos<span class="w"> </span><span class="p">|</span><span class="w"> </span>vcs<span class="w"> </span>import<span class="w"> </span>.
 </pre></div>
 </div>
 <div class="admonition note">
@@ -141,10 +138,7 @@ rosdep<span class="w"> </span>install<span class="w"> </span>--from-paths<span c
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../computer/index.html" class="btn btn-neutral float-left" title="Build in your computer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../about/index.html" class="btn btn-neutral float-right" title="About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
