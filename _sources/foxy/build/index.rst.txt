@@ -1,9 +1,12 @@
 .. _foxy_build:
 
 Build
-#################
+#####
 
-Install ROS
-***********
+This section includes the different ways to build go2_robot packages.
 
-Test 2
+.. toctree::
+   :maxdepth: 2
+   :glob:
+
+   */index
