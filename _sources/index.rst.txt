@@ -18,7 +18,7 @@
 Overview
 ########
 
-This repository for the unitree go 2 robot aims to use a wrapper to provide ROS 2 users with a more familiar environment, with topics and services that allow them to know the status of the robot, to be able to teleoperate it, or to have it perform different actions.
+This repository for the Unitree Go2 robot aims to use a wrapper to provide ROS 2 users with a more familiar environment, with topics and services that allow them to know the status of the robot, to be able to teleoperate it, or to have it perform different actions.
 
 In addition, you can also find packages to make your robot able to navigate or simulate it.
 
