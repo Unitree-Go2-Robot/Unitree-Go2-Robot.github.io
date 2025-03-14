@@ -56,13 +56,11 @@ master_doc = 'index'
 # General information about the project.
 project = u'Unitree Go2 Robot'
 copyright = u'2025'
-author = u'Various'
+author = u'Juancams'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
-
-version = release = "1.0.0"
 
 #
 # The short X.Y version.
@@ -75,7 +73,7 @@ version = release = "1.0.0"
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = 'en'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -113,7 +111,7 @@ else:
         'canonical_url': '',
         'analytics_id': '',
         'logo_only': False,
-        'display_version': True,
+        'display_version': False,
         'prev_next_buttons_location': 'None',
         'style_nav_header_background': 'orange',
         # Toc options
@@ -130,18 +128,22 @@ html_theme = 'otc_tcs_sphinx_theme'
 # /latest folder but when releases are made, we publish to a /<relnum>
 # folder (specified via RELEASE=name on the make command).
 
-if tags.has('release'):
-   current_version = version
-else:
-   version = current_version = "latest"
-
 html_context = {
-   'current_version': current_version,
-   'versions': ( ("latest", "/latest/"),
-#                 ("0.1-rc4", "/0.1-rc4/"),
-               )
+   'current_version': "Humble",
+    "versions": [
+        ("Rolling", "/rolling/"),
+        ("Jazzy", "/jazzy/"),
+        ("Humble", "/humble/"),
+        ("Foxy", "/foxy/"),
+    ],
+    "display_github": False,
     }
 
+html_theme_options = {
+    'collapse_navigation': False,
+    'sticky_navigation': True,
+    'navigation_depth': 4,
+}
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -189,6 +191,3 @@ breathe_projects = {
 }
 breathe_default_project = "SOF Project"
 breathe_default_members = ('members', 'undoc-members', 'content-only')
-
-extlinks = {'projectfile':
-    ('https://github.com/Unitree-Go2-Robot/Unitree-Go2-Robot.github.io/tree/main%s', 'filepath ')}

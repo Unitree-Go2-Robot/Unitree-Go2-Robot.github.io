@@ -1,6 +1,6 @@
-.. _about:
+.. _humble_about:
 
-About and Contact
+About
 #################
 
 About
@@ -30,8 +30,8 @@ independent consultants or contractors that know this project well.
 
 Acknowledgements
 ****************
-Many thanks to the entire (Intelligent Robotics Lab)[https://github.com/IntelligentRoboticsLabs] group at URJC for answering all my questions. They've helped by providing help code, tips, and code reviews.
+Many thanks to the entire `Intelligent Robotics Lab <https://github.com/IntelligentRoboticsLabs>`_ group at URJC for answering all my questions. They've helped by providing help code, tips, and code reviews.
 
-Also, I'd like to thank the (Leon robotics group)[https://robotica.unileon.es/index.php?title=Home] for testing the implementation with their robot and also for developing the navigation package.
+Also, I'd like to thank the `Leon robotics group <https://robotica.unileon.es/index.php?title=Home>`_ for testing the implementation with their robot and also for developing the navigation package.
 
-Finally, I'd like to thank (agutig)[https://github.com/agutig] because his (ABR_image_transport)[https://github.com/agutig/ABR_image_transport] project helped me implement the go2_camera module.
+Finally, I'd like to thank `agutig <https://github.com/agutig>`_ because his `ABR_image_transport <https://github.com/agutig/ABR_image_transport>`_ project helped me implement the go2_camera module.

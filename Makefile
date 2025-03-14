@@ -44,6 +44,7 @@ clean:
 # along with a README
 
 publish:
+	rm -fr $(PUBLISHDIR)
 	git clone --reference . https://github.com/Unitree-Go2-Robot/Unitree-Go2-Robot.github.io.git $(PUBLISHDIR)
 	cd $(PUBLISHDIR) && \
 	git checkout gh-pages && \
