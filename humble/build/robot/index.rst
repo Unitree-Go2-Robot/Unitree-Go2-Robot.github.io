@@ -22,6 +22,9 @@ Afterwards, you'll see that a connection has been established, and at startup, y
    :width: 800px
    :align: center
 
+.. raw:: html
+
+   <br><br>
 
 Build Go2 Robot packages
 ************************
