@@ -1,4 +1,4 @@
-.. _documentation_home:
+.. _humble_documentation_home:
 
 *****
 |LPN|
@@ -18,7 +18,7 @@
 Overview
 ########
 
-This repository for the unitree go 2 robot aims to use a wrapper to provide ros 2 users with a more familiar environment, with topics and services that allow them to know the status of the robot, to be able to teleoperate it, or to have it perform different actions.
+This repository for the unitree go 2 robot aims to use a wrapper to provide ROS 2 users with a more familiar environment, with topics and services that allow them to know the status of the robot, to be able to teleoperate it, or to have it perform different actions.
 
 In addition, you can also find packages to make your robot able to navigate or simulate it.
 
@@ -28,6 +28,5 @@ We hope that this repository will be of great help to the entire community, and 
 .. toctree::
    :hidden:
 
-   humble/about/index.rst
    humble/build/index.rst
-   
+   humble/about/index.rst

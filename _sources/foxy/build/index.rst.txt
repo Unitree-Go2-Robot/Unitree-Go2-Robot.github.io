@@ -1,4 +1,4 @@
-.. _build:
+.. _foxy_build:
 
 Build
 #################

@@ -121,34 +121,30 @@ function addVersionDropdown(versions) {
 
 function updateSidebarLinks(version) {
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
-  console.log("Versión actual: " + version);  // Comprobación de la versión
-  console.log("Número de enlaces encontrados: " + sidebarLinks.length);  // Número de enlaces
+  console.log("Versión actual: " + version); 
+  console.log("Número de enlaces encontrados: " + sidebarLinks.length);
 
   sidebarLinks.forEach(function(link) {
-    console.log("Enlace original: " + link.href);  // Mostrar enlace original
+    console.log("Enlace original: " + link.href); 
 
     var url = new URL(link.href);
     var pathParts = url.pathname.split('/');
 
-    // Si la versión es "Humble", la URL debe ser solo "index.html"
     if (version === "Humble") {
       if (!url.pathname.endsWith('index.html')) {
-        url.pathname = '/index.html';  // Forzar que apunte solo a "index.html"
+        url.pathname = '/index.html'; 
       }
     }
-    // Si no es "Humble", la URL debe incluir la versión en la ruta
     else if (version !== "Humble" && !url.pathname.includes(version.toLowerCase())) {
-      pathParts[1] = version.toLowerCase();  // Cambiar la versión en la ruta
+      pathParts[1] = version.toLowerCase(); 
       url.pathname = pathParts.join('/');
     }
 
-    // Asignar la URL actualizada al enlace
     link.href = url.toString();
-    console.log("Enlace actualizado: " + link.href);  // Mostrar enlace actualizado
+    console.log("Enlace actualizado: " + link.href);  //
   });
 }
 
-// Llamar a la función al cargar la página para actualizar los enlaces
 document.addEventListener("DOMContentLoaded", function () {
   var currentVersion = localStorage.getItem("ros2_version") || "Humble";
   updateSidebarLinks(currentVersion);
