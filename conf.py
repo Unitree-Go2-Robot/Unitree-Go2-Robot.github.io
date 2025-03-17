@@ -113,7 +113,6 @@ else:
         'logo_only': False,
         'display_version': False,
         'prev_next_buttons_location': 'None',
-        'style_nav_header_background': 'orange',
         # Toc options
         'collapse_navigation': False,
         'sticky_navigation': True,
@@ -129,22 +128,14 @@ html_theme = 'otc_tcs_sphinx_theme'
 # folder (specified via RELEASE=name on the make command).
 
 html_context = {
-   'current_version': "Humble",
-    "versions": [
-        ("Rolling", "/rolling/"),
-        ("Jazzy", "/jazzy/"),
-        ("Humble", "/humble/"),
-        ("Foxy", "/foxy/"),
-    ],
     "display_github": False,
     }
 
 html_theme_options = {
-    'collapse_navigation': False,
     'sticky_navigation': True,
+    'collapse_navigation': False,
     'navigation_depth': 4,
     'prev_next_buttons_location': 'None',
-    'style_nav_header_background': 'orange',
 }
 
 # Theme options are theme-specific and customize the look and feel of a theme

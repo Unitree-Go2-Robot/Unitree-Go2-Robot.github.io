@@ -28,7 +28,7 @@ We hope that this repository will be of great help to the entire community, and 
 .. toctree::
    :hidden:
 
-   foxy/build/index.rst
-   foxy/about/index.rst
+   build/index.rst
+   about/index.rst
    
    
