@@ -24,9 +24,9 @@ for (i = 0; i < contents.length; i++) {
       btn.innerHTML = element.innerHTML;
       btn.className += " collapsible";
       btn.id = span_id;
-      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-expanded', 'false'); // Inicialmente en "false"
 
-      // Restablecer el estado de expansión/collapsado
+      // Recuperar el estado de aria-expanded desde localStorage
       var savedState = localStorage.getItem(span_id);
       if (savedState) {
         btn.setAttribute('aria-expanded', savedState);
@@ -41,16 +41,17 @@ for (i = 0; i < contents.length; i++) {
         var isExpanded = this.getAttribute('aria-expanded') === 'true';
 
         // Cambiar el valor de aria-expanded
-        this.setAttribute('aria-expanded', !isExpanded);
+        var newState = !isExpanded;
+        this.setAttribute('aria-expanded', newState ? 'true' : 'false'); // Guardamos 'true' o 'false'
 
-        if (isExpanded) {
-          content.style.maxHeight = 0;
-        } else {
+        if (newState) {
           content.style.maxHeight = content.scrollHeight + "px";
+        } else {
+          content.style.maxHeight = 0;
         }
 
         // Guardar el estado en localStorage
-        localStorage.setItem(this.id, !isExpanded);
+        localStorage.setItem(this.id, newState ? 'true' : 'false');
       });
 
       contents[i].parentNode.insertBefore(btn, contents[i]);
