@@ -1,1 +1,2 @@
 breathe==4.32.0
+imghdr==2.0.0
