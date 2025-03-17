@@ -12,10 +12,6 @@
 
 .wy-side-scroll {
   width: 340px;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  position: absolute;
 }
 
 .wy-side-nav-search {

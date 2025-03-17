@@ -2,14 +2,14 @@ var i;
 var contents = document.getElementsByClassName("content-collapse section");
 
 for (i = 0; i < contents.length; i++) {
-  //Make sure the "content-collapse section" class is occurring in <div>
+  // Asegúrate de que la clase "content-collapse section" esté ocurriendo en un <div>
   if (contents[i].tagName.toLowerCase() == 'div') {
     var element = contents[i].children[0];
     var element_type = element.tagName.toLowerCase();
     var span_id;
     var spanElement;
 
-    //if the next element is a span grab the id and skip to the header
+    // Si el siguiente elemento es un span, obtener el id y continuar con el header
     if (element_type == 'span') {
       span_id = element.id;
       element.id = "";
@@ -18,12 +18,12 @@ for (i = 0; i < contents.length; i++) {
     }
 
     var btn = document.createElement("BUTTON");
-    //If it is a header capture which level and pass on to button
+    // Si es un header, captura el nivel y pasa al botón
     if (element_type.length == 2 && element_type[0] == 'h') {
       var newClass = 'clps' + element_type[1];
-      //collapses the section by default only if javascript is working
+      // Colapsa la sección por defecto si JavaScript está habilitado
       contents[i].style.maxHeight = 0;
-      //Build the button and define behavior
+      // Construye el botón y define su comportamiento
       btn.className += " " + newClass;
       btn.innerHTML = element.innerHTML;
       btn.className += " collapsible";
@@ -38,11 +38,11 @@ for (i = 0; i < contents.length; i++) {
         }
       });
 
-      //Add the button to the page and remove the header
+      // Añade el botón a la página y elimina el header
       contents[i].parentNode.insertBefore(btn, contents[i]);
       contents[i].removeChild(element);
     } else {
-      //reset span id if it isn't followed by Hx element
+      // Restablece el id del span si no está seguido por un elemento Hx
       spanElement.id = span_id;
     }
   }
@@ -89,13 +89,20 @@ function addVersionDropdown(versions) {
     versionLink.style.textDecoration = "none";
     versionLink.style.color = "black";
 
-    versionLink.addEventListener("click", function() {
+    versionLink.addEventListener("click", function(e) {
+      // Prevenir la acción predeterminada del enlace para evitar la recarga instantánea
+      e.preventDefault();
+
       // Guardar la versión actual en el almacenamiento local
       localStorage.setItem("ros2_version", version.name);
       currentVersionText.innerHTML = " (current: " + version.name + ")";
       versionList.style.maxHeight = "0";
       updateSidebarLinks(version.name);  // Actualizar enlaces al cambiar de versión
-      window.location.href = version.url;
+
+      // Redirigir a la nueva URL después de que el DOM se actualice
+      setTimeout(function() {
+        window.location.href = version.url;
+      }, 200);  // Retardo para que se actualicen los enlaces antes de redirigir
     });
 
     versionList.appendChild(versionLink);
@@ -121,27 +128,22 @@ function addVersionDropdown(versions) {
 
 function updateSidebarLinks(version) {
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
-  console.log("Versión actual: " + version); 
-  console.log("Número de enlaces encontrados: " + sidebarLinks.length);
 
   sidebarLinks.forEach(function(link) {
-    console.log("Enlace original: " + link.href); 
-
     var url = new URL(link.href);
     var pathParts = url.pathname.split('/');
 
+    // Cambiar la versión solo en los enlaces que no sean 'index.html' para mantener la estructura
     if (version === "Humble") {
-      if (!url.pathname.endsWith('index.html')) {
-        url.pathname = '/index.html'; 
+      if (url.pathname !== '/index.html' && !url.pathname.includes("humble")) {
+        url.pathname = '/index.html';  // Regresa a la página principal para 'Humble'
       }
-    }
-    else if (version !== "Humble" && !url.pathname.includes(version.toLowerCase())) {
-      pathParts[1] = version.toLowerCase(); 
+    } else if (version !== "Humble" && !url.pathname.includes(version.toLowerCase())) {
+      pathParts[1] = version.toLowerCase();  // Cambiar la versión en el path
       url.pathname = pathParts.join('/');
     }
 
     link.href = url.toString();
-    console.log("Enlace actualizado: " + link.href);  //
   });
 }
 
