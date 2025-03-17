@@ -9,9 +9,12 @@ build:
   os: ubuntu-24.04
   tools:
     python: "3.13"
-    breathe: "4.32.0"
 
 
 sphinx:
    configuration: conf.py
+
+python:
+   install:
+   - requirements: requirements.txt
         
