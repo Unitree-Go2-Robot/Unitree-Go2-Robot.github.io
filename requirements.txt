@@ -1,4 +1,5 @@
 sphinx==5.3.0
+sphinx_rtd_theme==3.0.2
 breathe==4.35.0
 standard-imghdr==3.13.0
 alabaster==0.7.12

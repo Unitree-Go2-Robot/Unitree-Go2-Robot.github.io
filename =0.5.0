@@ -1,0 +1,38 @@
+Defaulting to user installation because normal site-packages is not writeable
+Requirement already satisfied: sphinx_rtd_theme in /home/juanca/.local/lib/python3.12/site-packages (3.0.2)
+Collecting sphinx<9,>=6 (from sphinx_rtd_theme)
+  Downloading sphinx-8.2.3-py3-none-any.whl.metadata (7.0 kB)
+Requirement already satisfied: docutils<0.22,>0.18 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx_rtd_theme) (0.19)
+Requirement already satisfied: sphinxcontrib-jquery<5,>=4 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx_rtd_theme) (4.1)
+Requirement already satisfied: sphinxcontrib-applehelp>=1.0.7 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.0.0)
+Requirement already satisfied: sphinxcontrib-devhelp>=1.0.6 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.0.0)
+Requirement already satisfied: sphinxcontrib-htmlhelp>=2.0.6 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.1.0)
+Requirement already satisfied: sphinxcontrib-jsmath>=1.0.1 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (1.0.1)
+Requirement already satisfied: sphinxcontrib-qthelp>=1.0.6 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.0.0)
+Requirement already satisfied: sphinxcontrib-serializinghtml>=1.1.9 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.0.0)
+Requirement already satisfied: Jinja2>=3.1 in /usr/lib/python3/dist-packages (from sphinx<9,>=6->sphinx_rtd_theme) (3.1.2)
+Requirement already satisfied: Pygments>=2.17 in /usr/lib/python3/dist-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.17.2)
+Collecting docutils<0.22,>0.18 (from sphinx_rtd_theme)
+  Using cached docutils-0.21.2-py3-none-any.whl.metadata (2.8 kB)
+Requirement already satisfied: snowballstemmer>=2.2 in /usr/lib/python3/dist-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.2.0)
+Requirement already satisfied: babel>=2.13 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.16.0)
+Requirement already satisfied: alabaster>=0.7.14 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (0.7.16)
+Requirement already satisfied: imagesize>=1.3 in /home/juanca/.local/lib/python3.12/site-packages (from sphinx<9,>=6->sphinx_rtd_theme) (1.4.1)
+Requirement already satisfied: requests>=2.30.0 in /usr/lib/python3/dist-packages (from sphinx<9,>=6->sphinx_rtd_theme) (2.31.0)
+Collecting roman-numerals-py>=1.0.0 (from sphinx<9,>=6->sphinx_rtd_theme)
+  Downloading roman_numerals_py-3.1.0-py3-none-any.whl.metadata (3.6 kB)
+Requirement already satisfied: packaging>=23.0 in /usr/lib/python3/dist-packages (from sphinx<9,>=6->sphinx_rtd_theme) (24.0)
+Downloading sphinx-8.2.3-py3-none-any.whl (3.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 8.9 MB/s eta 0:00:00
+Using cached docutils-0.21.2-py3-none-any.whl (587 kB)
+Downloading roman_numerals_py-3.1.0-py3-none-any.whl (7.7 kB)
+Installing collected packages: roman-numerals-py, docutils, sphinx
+  Attempting uninstall: docutils
+    Found existing installation: docutils 0.19
+    Uninstalling docutils-0.19:
+      Successfully uninstalled docutils-0.19
+  Attempting uninstall: sphinx
+    Found existing installation: Sphinx 5.3.0
+    Uninstalling Sphinx-5.3.0:
+      Successfully uninstalled Sphinx-5.3.0
+Successfully installed docutils-0.21.2 roman-numerals-py-3.1.0 sphinx-8.2.3
