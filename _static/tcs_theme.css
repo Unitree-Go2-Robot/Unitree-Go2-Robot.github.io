@@ -184,8 +184,8 @@ th,td {
 }
 
 .version-dropdown .collapsible {
-  background-color: #ffffff;
-  border: none;
+  background-color: #5ee100;
+  border: 50px;
   outline: none;
   cursor: pointer;
   padding: 8px;
