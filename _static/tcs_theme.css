@@ -177,15 +177,15 @@ th,td {
 }
 
 .version-dropdown {
-  position: sticky;
-  bottom: 0;
+  position: absolute;
+  bottom: -20px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .version-dropdown .collapsible {
   background-color: #ffffff;
-  border: 50px;
+  border: none;
   outline: none;
   cursor: pointer;
   padding: 8px;
