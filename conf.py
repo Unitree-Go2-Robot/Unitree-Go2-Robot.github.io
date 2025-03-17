@@ -143,6 +143,8 @@ html_theme_options = {
     'collapse_navigation': False,
     'sticky_navigation': True,
     'navigation_depth': 4,
+    'prev_next_buttons_location': 'None',
+    'style_nav_header_background': 'orange',
 }
 
 # Theme options are theme-specific and customize the look and feel of a theme

@@ -177,8 +177,8 @@ th,td {
 }
 
 .version-dropdown {
-  position: absolute;
-  bottom: -20px;
+  position: sticky;
+  bottom: 0;
   width: 100%;
   box-sizing: border-box;
 }
