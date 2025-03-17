@@ -2,12 +2,14 @@ var i;
 var contents = document.getElementsByClassName("content-collapse section");
 
 for (i = 0; i < contents.length; i++) {
+  //Make sure the "content-collapse section" class is occurring in <div>
   if (contents[i].tagName.toLowerCase() == 'div') {
     var element = contents[i].children[0];
     var element_type = element.tagName.toLowerCase();
     var span_id;
     var spanElement;
 
+    //if the next element is a span grab the id and skip to the header
     if (element_type == 'span') {
       span_id = element.id;
       element.id = "";
@@ -16,46 +18,32 @@ for (i = 0; i < contents.length; i++) {
     }
 
     var btn = document.createElement("BUTTON");
+    //If it is a header capture which level and pass on to button
     if (element_type.length == 2 && element_type[0] == 'h') {
       var newClass = 'clps' + element_type[1];
+      //collapses the section by default only if javascript is working
       contents[i].style.maxHeight = 0;
-
+      //Build the button and define behavior
       btn.className += " " + newClass;
       btn.innerHTML = element.innerHTML;
       btn.className += " collapsible";
       btn.id = span_id;
-      btn.setAttribute('aria-expanded', 'false'); // Inicialmente en "false"
-
-      // Recuperar el estado de aria-expanded desde localStorage
-      var savedState = localStorage.getItem(span_id);
-      if (savedState) {
-        btn.setAttribute('aria-expanded', savedState);
-        if (savedState === 'true') {
-          contents[i].style.maxHeight = contents[i].scrollHeight + "px";
-        }
-      }
-
       btn.addEventListener("click", function() {
         this.classList.toggle("active");
         var content = this.nextElementSibling;
-        var isExpanded = this.getAttribute('aria-expanded') === 'true';
-
-        // Cambiar el valor de aria-expanded
-        var newState = !isExpanded;
-        this.setAttribute('aria-expanded', newState ? 'true' : 'false'); // Guardamos 'true' o 'false'
-
-        if (newState) {
-          content.style.maxHeight = content.scrollHeight + "px";
-        } else {
+        if (content.style.maxHeight != "0px") {
           content.style.maxHeight = 0;
+        } else {
+          content.style.maxHeight = content.scrollHeight + "px";
         }
-
-        // Guardar el estado en localStorage
-        localStorage.setItem(this.id, newState ? 'true' : 'false');
       });
 
+      //Add the button to the page and remove the header
       contents[i].parentNode.insertBefore(btn, contents[i]);
       contents[i].removeChild(element);
+    } else {
+      //reset span id if it isn't followed by Hx element
+      spanElement.id = span_id;
     }
   }
 }
@@ -76,6 +64,7 @@ function addVersionDropdown(versions) {
   var currentVersionText = document.createElement("span");
   currentVersionText.className = "current-version";
 
+  // Obtener la versión actual desde el almacenamiento local o usar "Humble" como predeterminada
   var currentVersion = localStorage.getItem("ros2_version") || "Humble";
   currentVersionText.innerHTML = " (current: " + currentVersion + ")";
 
@@ -98,18 +87,15 @@ function addVersionDropdown(versions) {
     versionLink.style.display = "block";
     versionLink.style.padding = "5px 0";
     versionLink.style.textDecoration = "none";
-    versionLink.style.color = "black";
+    versionLink.style.color = "white";
 
-    versionLink.addEventListener("click", function(e) {
-      e.preventDefault();
+    versionLink.addEventListener("click", function() {
+      // Guardar la versión actual en el almacenamiento local
       localStorage.setItem("ros2_version", version.name);
       currentVersionText.innerHTML = " (current: " + version.name + ")";
       versionList.style.maxHeight = "0";
-      updateSidebarLinks(version.name);
-
-      setTimeout(function() {
-        window.location.href = version.url;
-      }, 200);
+      updateSidebarLinks(version.name);  // Actualizar enlaces al cambiar de versión
+      window.location.href = version.url;
     });
 
     versionList.appendChild(versionLink);
@@ -134,23 +120,41 @@ function addVersionDropdown(versions) {
 }
 
 function updateSidebarLinks(version) {
+  // Recuperar la versión actual desde localStorage
+  var savedVersion = localStorage.getItem("ros2_version") || "Humble";
+
+  // Si la versión guardada es la misma que la versión actual, no hacer nada
+  if (savedVersion === version) {
+    console.log("La versión ya está actualizada. No se realizarán cambios.");
+    return;  // Salir de la función si las versiones son iguales
+  }
+
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
+  console.log("Versión actual: " + version); 
+  console.log("Número de enlaces encontrados: " + sidebarLinks.length);
 
   sidebarLinks.forEach(function(link) {
+    console.log("Enlace original: " + link.href); 
+
     var url = new URL(link.href);
     var pathParts = url.pathname.split('/');
 
     if (version === "Humble") {
-      if (url.pathname !== '/index.html' && !url.pathname.includes("humble")) {
-        url.pathname = '/index.html';
+      if (!url.pathname.endsWith('index.html')) {
+        url.pathname = '/index.html'; 
       }
-    } else if (version !== "Humble" && !url.pathname.includes(version.toLowerCase())) {
-      pathParts[1] = version.toLowerCase();
+    }
+    else if (version !== "Humble" && !url.pathname.includes(version.toLowerCase())) {
+      pathParts[1] = version.toLowerCase(); 
       url.pathname = pathParts.join('/');
     }
 
     link.href = url.toString();
+    console.log("Enlace actualizado: " + link.href);  
   });
+
+  // Guardar la nueva versión en localStorage
+  localStorage.setItem("ros2_version", version);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
