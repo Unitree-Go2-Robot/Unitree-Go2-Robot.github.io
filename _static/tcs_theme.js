@@ -87,7 +87,7 @@ function addVersionDropdown(versions) {
     versionLink.style.display = "block";
     versionLink.style.padding = "5px 0";
     versionLink.style.textDecoration = "none";
-    versionLink.style.color = "white";
+    versionLink.style.color = "black";
 
     versionLink.addEventListener("click", function() {
       // Guardar la versión actual en el almacenamiento local
