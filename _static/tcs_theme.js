@@ -127,7 +127,6 @@ function updateSidebarLinks(version) {
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
 
   sidebarLinks.forEach(function(link) {
-    console.log("Enlace original: " + link.href); 
 
     var url = new URL(link.href);
     var pathParts = url.pathname.split('/');
@@ -143,7 +142,6 @@ function updateSidebarLinks(version) {
     }
 
     link.href = url.toString();
-    console.log("Enlace actualizado: " + link.href);  
   });
 
   localStorage.setItem("ros2_version", version);

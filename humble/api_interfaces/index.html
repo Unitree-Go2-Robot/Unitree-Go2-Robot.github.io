@@ -1,0 +1,949 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API Interfaces &mdash; Unitree Go2 Robot  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="About" href="../about/index.html" />
+    <link rel="prev" title="Build into the robot" href="../build/robot/index.html" />
+
+<link rel="stylesheet" href="../../_static/tcs_theme.css" type="text/css" />
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Unitree Go2 Robot
+              <img src="../../_static/go2_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../build/index.html">Build</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../build/computer/index.html">Build in your computer</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/computer/index.html#install-ros-2">Install ROS 2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/computer/index.html#build-go2-robot-packages">Build Go2 Robot packages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../build/robot/index.html">Build into the robot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../build/robot/index.html#connect-to-the-robot">Connect to the robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../build/robot/index.html#build-go2-robot-packages">Build Go2 Robot packages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-handle-services">Go2 Handle Services</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#body-height">Body Height</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#continuous-gait">Continuous Gait</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#euler">Euler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#foot-raise-height">Foot Raise Height</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-body-height">Get Body Height</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-foot-raise-height">Get Foot Raise Height</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-speed-level">Get Speed Level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-state">Get State</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mode">Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pose">Pose</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#speed-level">Speed Level</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switch-gait">Switch Gait</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#switch-joystick">Switch Joystick</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-switch-obstacle-avoidance">Go2 Switch Obstacle Avoidance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-obstacle-avoidance">Get Obstacle Avoidance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-obstacle-avoidance">Set Obstacle Avoidance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-tts">Go2 TTS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tts">TTS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-vui">Go2 VUI</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#get-brightness">Get Brightness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-switch">Get Switch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#get-volume">Get Volume</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-brightness">Set Brightness</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-switch">Set Switch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#set-volume">Set Volume</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">About</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../about/index.html#id1">About</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/index.html#contact">Contact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../about/index.html#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Unitree Go2 Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+
+
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">API Interfaces</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api-interfaces">
+<span id="humble-api-interfaces"></span><h1>API Interfaces<a class="headerlink" href="#api-interfaces" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>This section includes all the services that are available when you launch the Robot SDK.</p>
+</section>
+<section id="go2-handle-services">
+<h2>Go2 Handle Services<a class="headerlink" href="#go2-handle-services" title="Link to this heading"></a></h2>
+<section id="body-height">
+<h3>Body Height<a class="headerlink" href="#body-height" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>0.18 ~ 0.03</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Set the relative height of the body above the ground when standing and walking.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/body_height<span class="w"> </span>go2_interfaces/srv/BodyHeight<span class="w"> </span><span class="s2">&quot;height: 0.02&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="continuous-gait">
+<h3>Continuous Gait<a class="headerlink" href="#continuous-gait" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>flag</p></td>
+<td><p>true ~ false</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Continuous movement.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/continuous_gait<span class="w"> </span>go2_interfaces/srv/ContinuousGait<span class="w"> </span><span class="s2">&quot;flag: true&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="euler">
+<h3>Euler<a class="headerlink" href="#euler" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>float32</p></td>
+<td><p>roll</p></td>
+<td><p>-0,75 ~ 0,75</p></td>
+</tr>
+<tr class="row-odd"><td><p>float32</p></td>
+<td><p>pitch</p></td>
+<td><p>-0,75 ~ 0,75</p></td>
+</tr>
+<tr class="row-even"><td><p>float32</p></td>
+<td><p>yaw</p></td>
+<td><p>-0.6 ~ 0.6</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Posture when standing and walking.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/euler<span class="w"> </span>go2_interfaces/srv/Euler<span class="w"> </span><span class="s2">&quot;roll: 0.1 pitch: 0.1 yaw: 0.1&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="foot-raise-height">
+<h3>Foot Raise Height<a class="headerlink" href="#foot-raise-height" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>-0.06 ~ 0.03</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Set the relative height of foot lift during movement.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/foot_raise_height<span class="w"> </span>go2_interfaces/srv/FootRaiseHeight<span class="w"> </span><span class="s2">&quot;height: 0.02&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="get-body-height">
+<h3>Get Body Height<a class="headerlink" href="#get-body-height" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Get the relative height of the body above the ground when standing and walking.</p>
+</dd>
+<dt>Response</dt><dd><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>success</p></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>message</p></td>
+</tr>
+<tr class="row-even"><td><p>float32</p></td>
+<td><p>height</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_body_height<span class="w"> </span>go2_interfaces/srv/GetBodyHeight
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="get-foot-raise-height">
+<h3>Get Foot Raise Height<a class="headerlink" href="#get-foot-raise-height" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Get the relative height of foot lift during movement.</p>
+</dd>
+<dt>Response</dt><dd><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>success</p></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>message</p></td>
+</tr>
+<tr class="row-even"><td><p>float32</p></td>
+<td><p>height</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_foot_raise_height<span class="w"> </span>go2_interfaces/srv/GetFootRaiseHeight
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="get-speed-level">
+<h3>Get Speed Level<a class="headerlink" href="#get-speed-level" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Get the speed level.</p>
+</dd>
+<dt>Response</dt><dd><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>success</p></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>message</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>level</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_speed_level<span class="w"> </span>go2_interfaces/srv/GetSpeedLevel
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="get-state">
+<h3>Get State<a class="headerlink" href="#get-state" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Get state.</p>
+</dd>
+<dt>Response</dt><dd><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>success</p></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>message</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_state<span class="w"> </span>go2_interfaces/srv/GetState
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="mode">
+<h3>Mode<a class="headerlink" href="#mode" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>string</p></td>
+<td><p>mode</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>The robot does something according to the mode.</p>
+<details>
+<summary>Click to expand all modes and descriptions</summary>
+<ul>
+  <li><strong>Damp</strong>: Damp refers to a mode that controls the robot's dampening behavior, which affects the stiffness of joints and how they respond to forces.</li>
+  <li><strong>BalanceStand</strong>: BalanceStand is a mode where the robot attempts to stabilize and maintain a balanced standing posture.</li>
+  <li><strong>StopMove</strong>: StopMove halts the robot’s movement, bringing it to a stop immediately.</li>
+  <li><strong>StandUp</strong>: StandUp is a mode where the robot rises from a sitting or lying position to a standing posture.</li>
+  <li><strong>StandDown</strong>: StandDown makes the robot lower itself from a standing position to a sitting or resting posture.</li>
+  <li><strong>RecoveryStand</strong>: RecoveryStand is used when the robot has fallen or is off-balance and needs to return to a standing position.</li>
+  <li><strong>Euler</strong>: Euler mode controls the robot’s movements using Euler angles for orientation and rotation.</li>
+  <li><strong>Move</strong>: Move mode allows the robot to move in any specified direction or path.</li>
+  <li><strong>Sit</strong>: Sit mode places the robot in a seated position.</li>
+  <li><strong>RiseSit</strong>: RiseSit allows the robot to transition from a sitting position to a standing one.</li>
+  <li><strong>SwitchGait</strong>: SwitchGait enables the robot to change its gait pattern or walking style.</li>
+  <li><strong>Trigger</strong>: Trigger mode initiates a specific action or behavior in the robot.</li>
+  <li><strong>BodyHeight</strong>: BodyHeight adjusts the height of the robot's body, typically in relation to the ground.</li>
+  <li><strong>FootRaiseHeight</strong>: FootRaiseHeight controls the height at which the robot lifts its feet during movement.</li>
+  <li><strong>SpeedLevel</strong>: SpeedLevel sets the robot’s speed level for different actions or movement modes.</li>
+  <li><strong>Hello</strong>: Hello mode is a basic greeting action where the robot acknowledges or interacts with a user.</li>
+  <li><strong>Stretch</strong>: Stretch mode makes the robot perform a stretching motion, typically to loosen up joints.</li>
+  <li><strong>TrajectoryFollow</strong>: TrajectoryFollow allows the robot to follow a predefined trajectory or path based on a set of waypoints.</li>
+  <li><strong>ContinuousGait</strong>: ContinuousGait enables a constant, uninterrupted gait pattern for walking or running.</li>
+  <li><strong>Content</strong>: Content mode allows the robot to interact or display various forms of content or information.</li>
+  <li><strong>Wallow</strong>: Wallow mode refers to a behavior where the robot performs a motion that simulates rolling or wallowing.</li>
+  <li><strong>Dance1</strong>: Dance1 makes the robot perform a specific dance routine or sequence of movements.</li>
+  <li><strong>Dance2</strong>: Dance2 is another unique dance routine that the robot performs.</li>
+  <li><strong>GetBodyHeight</strong>: GetBodyHeight retrieves the current height of the robot's body from the ground.</li>
+  <li><strong>GetFootRaiseHeight</strong>: GetFootRaiseHeight retrieves the current height at which the robot's feet are raised during movement.</li>
+  <li><strong>GetSpeedLevel</strong>: GetSpeedLevel retrieves the current speed level of the robot.</li>
+  <li><strong>SwitchJoystick</strong>: SwitchJoystick allows the robot to change its control mode between different input devices, like joysticks.</li>
+  <li><strong>Pose</strong>: Pose mode refers to the robot assuming a specific posture or configuration of its joints.</li>
+  <li><strong>Scrape</strong>: Scrape mode allows the robot to perform scraping movements, typically with its feet or body.</li>
+  <li><strong>FrontFlip</strong>: FrontFlip makes the robot perform a forward flip.</li>
+  <li><strong>FrontJump</strong>: FrontJump makes the robot perform a forward jump.</li>
+  <li><strong>FrontPounce</strong>: FrontPounce is a mode where the robot performs a forward pounce or leap.</li>
+  <li><strong>WiggleHips</strong>: WiggleHips makes the robot perform a hip-wiggling motion, typically for dancing.</li>
+  <li><strong>GetState</strong>: GetState retrieves the current state or status of the robot, including its posture or mode.</li>
+  <li><strong>EconomicGait</strong>: EconomicGait is a mode that adjusts the robot's gait to optimize energy efficiency.</li>
+  <li><strong>FingerHeart</strong>: FingerHeart mode allows the robot to make a heart shape with its fingers, typically for gestures.</li>
+  <li><strong>Dance3</strong>: Dance3 is yet another specific dance routine that the robot performs.</li>
+  <li><strong>Dance4</strong>: Dance4 is a fourth unique dance routine.</li>
+  <li><strong>HopSpinLeft</strong>: HopSpinLeft makes the robot hop and spin to the left.</li>
+  <li><strong>HopSpinRight</strong>: HopSpinRight makes the robot hop and spin to the right.</li>
+  <li><strong>LeftFlip</strong>: LeftFlip makes the robot perform a flip to the left.</li>
+  <li><strong>BackFlip</strong>: BackFlip makes the robot perform a backward flip.</li>
+  <li><strong>FreeWalk</strong>: FreeWalk allows the robot to walk freely without following a specific gait pattern.</li>
+  <li><strong>FreeBound</strong>: FreeBound allows the robot to perform bounding or hopping movements in any direction.</li>
+  <li><strong>FreeJump</strong>: FreeJump lets the robot perform a jump in any direction or height.</li>
+  <li><strong>FreeAvoid</strong>: FreeAvoid enables the robot to navigate and avoid obstacles in its path.</li>
+  <li><strong>WalkStair</strong>: WalkStair allows the robot to climb stairs in a walking pattern.</li>
+  <li><strong>WalkUpRight</strong>: WalkUpRight lets the robot walk in a more upright posture, suitable for climbing or walking in tight spaces.</li>
+  <li><strong>CrossStep</strong>: CrossStep involves the robot crossing one leg over the other in its gait.</li>
+</ul>
+</details></dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/mode<span class="w"> </span>go2_interfaces/srv/Mode<span class="w"> </span><span class="s2">&quot;mode: &#39;hello&#39;&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="pose">
+<h3>Pose<a class="headerlink" href="#pose" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>flag</p></td>
+<td><p>true ~ false</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Set true to pose and false to restore</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/pose<span class="w"> </span>go2_interfaces/srv/Pose<span class="w"> </span><span class="s2">&quot;flag: true&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="speed-level">
+<h3>Speed Level<a class="headerlink" href="#speed-level" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>level</p></td>
+<td><p>-1 ~ 1</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Set the speed range.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/speed_level<span class="w"> </span>go2_interfaces/srv/SpeedLevel<span class="w"> </span><span class="s2">&quot;level: 1&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="switch-gait">
+<h3>Switch Gait<a class="headerlink" href="#switch-gait" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>gait</p></td>
+<td><p>0 ~ 4</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>This service allows switching the robot’s gait to one of the predefined modes.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>IDLE (0)</cite>: The robot is idle.</p></li>
+<li><p><cite>TROT (1)</cite>: The robot moves with a trot gait.</p></li>
+<li><p><cite>TROT_RUN_NING (2)</cite>: A specific variation of the trot gait.</p></li>
+<li><p><cite>FORWARD_CLIMBING_MODE (3)</cite>: The robot switches to a climbing mode for forward movement.</p></li>
+<li><p><cite>REVERSE_CLIMBING_MODE (4)</cite>: The robot switches to a reverse climbing mode.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/switch_gait<span class="w"> </span>go2_interfaces/srv/SwitchGait<span class="w"> </span><span class="s2">&quot;gait: 1&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="switch-joystick">
+<h3>Switch Joystick<a class="headerlink" href="#switch-joystick" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>flag</p></td>
+<td><p>true ~ false</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Native remote control response switch.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/switch_joystick<span class="w"> </span>go2_interfaces/srv/SwitchJoystick<span class="w"> </span><span class="s2">&quot;flag: true&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="go2-switch-obstacle-avoidance">
+<h2>Go2 Switch Obstacle Avoidance<a class="headerlink" href="#go2-switch-obstacle-avoidance" title="Link to this heading"></a></h2>
+<section id="get-obstacle-avoidance">
+<h3>Get Obstacle Avoidance<a class="headerlink" href="#get-obstacle-avoidance" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Get switch obstacle avoidance.</p>
+</dd>
+<dt>Response</dt><dd><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>success</p></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>message</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>enable</p></td>
+</tr>
+</tbody>
+</table>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_obstacle_avoidance<span class="w"> </span>go2_interfaces/srv/GetObstacleAvoidance
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="set-obstacle-avoidance">
+<h3>Set Obstacle Avoidance<a class="headerlink" href="#set-obstacle-avoidance" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>enable</p></td>
+<td><p>0 ~ 1</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Set switch obstacle avoidance.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/set_obstacle_avoidance<span class="w"> </span>go2_interfaces/srv/SetObstacleAvoidance<span class="w"> </span><span class="s2">&quot;enable: 1&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="go2-tts">
+<h2>Go2 TTS<a class="headerlink" href="#go2-tts" title="Link to this heading"></a></h2>
+<section id="tts">
+<h3>TTS<a class="headerlink" href="#tts" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>string</p></td>
+<td><p>text</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Text to speech.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/say<span class="w"> </span>go2_interfaces/srv/Say<span class="w"> </span><span class="s2">&quot;text: &#39;Hello, I am Go2 robot&#39;&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+<section id="go2-vui">
+<h2>Go2 VUI<a class="headerlink" href="#go2-vui" title="Link to this heading"></a></h2>
+<section id="get-brightness">
+<h3>Get Brightness<a class="headerlink" href="#get-brightness" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>Description</dt><dd><p>Get the brightness of the screen.</p>
+</dd>
+</dl>
+<p>Response</p>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>success</p></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>message</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>brightness</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<dl>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_brightness<span class="w"> </span>go2_interfaces/srv/GetBrightness
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="get-switch">
+<h3>Get Switch<a class="headerlink" href="#get-switch" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>Description</dt><dd><p>Get the switch status.</p>
+</dd>
+</dl>
+<p>Response</p>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>success</p></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>message</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>enable</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<dl>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_switch<span class="w"> </span>go2_interfaces/srv/GetSwitch
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="get-volume">
+<h3>Get Volume<a class="headerlink" href="#get-volume" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>N/A</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt>Description</dt><dd><p>Get the volume of the robot.</p>
+</dd>
+</dl>
+<p>Response</p>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+</tr>
+<tr class="row-even"><td><p>bool</p></td>
+<td><p>success</p></td>
+</tr>
+<tr class="row-odd"><td><p>string</p></td>
+<td><p>message</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>volume</p></td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
+<dl>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/get_volume<span class="w"> </span>go2_interfaces/srv/GetVolume
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="set-brightness">
+<h3>Set Brightness<a class="headerlink" href="#set-brightness" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>brightness</p></td>
+<td><p>0 ~ 10</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Set the brightness of the light.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/set_brightness<span class="w"> </span>go2_interfaces/srv/SetBrightness<span class="w"> </span><span class="s2">&quot;brightness: 5&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="set-switch">
+<h3>Set Switch<a class="headerlink" href="#set-switch" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>enable</p></td>
+<td><p>0 ~ 1</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Set the switch status.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/set_switch<span class="w"> </span>go2_interfaces/srv/SetSwitch<span class="w"> </span><span class="s2">&quot;enable: 1&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="set-volume">
+<h3>Set Volume<a class="headerlink" href="#set-volume" title="Link to this heading"></a></h3>
+<blockquote>
+<div><table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Type</p></td>
+<td><p>Parameter</p></td>
+<td><p>Range</p></td>
+</tr>
+<tr class="row-even"><td><p>int32</p></td>
+<td><p>volume</p></td>
+<td><p>0 ~ 10</p></td>
+</tr>
+</tbody>
+</table>
+<dl>
+<dt>Description</dt><dd><p>Set the volume of the robot.</p>
+</dd>
+<dt>Usage Example</dt><dd><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>service<span class="w"> </span>call<span class="w"> </span>/set_volume<span class="w"> </span>go2_interfaces/srv/SetVolume<span class="w"> </span><span class="s2">&quot;volume: 5&quot;</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Intelligent Robotics Lab.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+
+
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+<script type="text/javascript" src="../../_static/tcs_theme.js"></script>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+
+</body>
+</html>

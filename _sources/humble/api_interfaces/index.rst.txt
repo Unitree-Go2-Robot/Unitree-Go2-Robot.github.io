@@ -1,0 +1,544 @@
+.. _humble_api_interfaces:
+
+API Interfaces
+##############
+
+Overview
+********
+
+This section includes all the services that are available when you launch the Robot SDK.
+
+Go2 Handle Services
+*******************
+
+Body Height
+-----------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  float32         height    0.18 ~ 0.03
+  ============== ========= ============
+
+  Description
+    Set the relative height of the body above the ground when standing and walking.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /body_height go2_interfaces/srv/BodyHeight "height: 0.02"
+
+Continuous Gait
+---------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  bool           flag      true ~ false
+  ============== ========= ============
+
+  Description
+    Continuous movement.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /continuous_gait go2_interfaces/srv/ContinuousGait "flag: true"
+
+Euler
+-----
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  float32           roll   -0,75 ~ 0,75
+  float32           pitch  -0,75 ~ 0,75
+  float32           yaw    -0.6 ~ 0.6
+  ============== ========= ============
+
+  Description
+    Posture when standing and walking.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /euler go2_interfaces/srv/Euler "roll: 0.1 pitch: 0.1 yaw: 0.1"
+
+Foot Raise Height
+-----------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  float32         height   -0.06 ~ 0.03
+  ============== ========= ============
+
+  Description
+    Set the relative height of foot lift during movement.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /foot_raise_height go2_interfaces/srv/FootRaiseHeight "height: 0.02"
+
+Get Body Height
+---------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  N/A            N/A        N/A  
+  ============== ========= ============
+
+  Description
+    Get the relative height of the body above the ground when standing and walking.
+
+  Response
+   ============== =========
+   Type           Parameter
+   -------------- ---------
+   bool           success
+   string         message
+   float32         height   
+   ============== =========
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /get_body_height go2_interfaces/srv/GetBodyHeight
+
+
+Get Foot Raise Height
+---------------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  N/A            N/A        N/A  
+  ============== ========= ============
+
+  Description
+    Get the relative height of foot lift during movement.
+
+  Response
+   ============== =========
+   Type           Parameter
+   -------------- ---------
+   bool           success
+   string         message
+   float32         height   
+   ============== =========
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /get_foot_raise_height go2_interfaces/srv/GetFootRaiseHeight
+
+
+Get Speed Level
+---------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  N/A            N/A        N/A  
+  ============== ========= ============
+
+  Description
+    Get the speed level.
+
+  Response
+   ============== =========
+   Type           Parameter
+   -------------- ---------
+   bool           success
+   string         message
+   int32          level   
+   ============== =========
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /get_speed_level go2_interfaces/srv/GetSpeedLevel
+
+
+Get State
+---------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  N/A            N/A        N/A  
+  ============== ========= ============
+
+  Description
+    Get state.
+
+  Response
+   ============== =========
+   Type           Parameter
+   -------------- ---------
+   bool           success
+   string         message
+   ============== =========
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /get_state go2_interfaces/srv/GetState
+
+
+Mode
+----
+
+  ============== =========
+  Type           Parameter 
+  -------------- ---------
+  string         mode   
+  ============== ========= 
+
+  Description
+    The robot does something according to the mode.
+  
+    .. raw:: html
+
+       <details>
+       <summary>Click to expand all modes and descriptions</summary>
+       <ul>
+         <li><strong>Damp</strong>: Damp refers to a mode that controls the robot's dampening behavior, which affects the stiffness of joints and how they respond to forces.</li>
+         <li><strong>BalanceStand</strong>: BalanceStand is a mode where the robot attempts to stabilize and maintain a balanced standing posture.</li>
+         <li><strong>StopMove</strong>: StopMove halts the robot’s movement, bringing it to a stop immediately.</li>
+         <li><strong>StandUp</strong>: StandUp is a mode where the robot rises from a sitting or lying position to a standing posture.</li>
+         <li><strong>StandDown</strong>: StandDown makes the robot lower itself from a standing position to a sitting or resting posture.</li>
+         <li><strong>RecoveryStand</strong>: RecoveryStand is used when the robot has fallen or is off-balance and needs to return to a standing position.</li>
+         <li><strong>Euler</strong>: Euler mode controls the robot’s movements using Euler angles for orientation and rotation.</li>
+         <li><strong>Move</strong>: Move mode allows the robot to move in any specified direction or path.</li>
+         <li><strong>Sit</strong>: Sit mode places the robot in a seated position.</li>
+         <li><strong>RiseSit</strong>: RiseSit allows the robot to transition from a sitting position to a standing one.</li>
+         <li><strong>SwitchGait</strong>: SwitchGait enables the robot to change its gait pattern or walking style.</li>
+         <li><strong>Trigger</strong>: Trigger mode initiates a specific action or behavior in the robot.</li>
+         <li><strong>BodyHeight</strong>: BodyHeight adjusts the height of the robot's body, typically in relation to the ground.</li>
+         <li><strong>FootRaiseHeight</strong>: FootRaiseHeight controls the height at which the robot lifts its feet during movement.</li>
+         <li><strong>SpeedLevel</strong>: SpeedLevel sets the robot’s speed level for different actions or movement modes.</li>
+         <li><strong>Hello</strong>: Hello mode is a basic greeting action where the robot acknowledges or interacts with a user.</li>
+         <li><strong>Stretch</strong>: Stretch mode makes the robot perform a stretching motion, typically to loosen up joints.</li>
+         <li><strong>TrajectoryFollow</strong>: TrajectoryFollow allows the robot to follow a predefined trajectory or path based on a set of waypoints.</li>
+         <li><strong>ContinuousGait</strong>: ContinuousGait enables a constant, uninterrupted gait pattern for walking or running.</li>
+         <li><strong>Content</strong>: Content mode allows the robot to interact or display various forms of content or information.</li>
+         <li><strong>Wallow</strong>: Wallow mode refers to a behavior where the robot performs a motion that simulates rolling or wallowing.</li>
+         <li><strong>Dance1</strong>: Dance1 makes the robot perform a specific dance routine or sequence of movements.</li>
+         <li><strong>Dance2</strong>: Dance2 is another unique dance routine that the robot performs.</li>
+         <li><strong>GetBodyHeight</strong>: GetBodyHeight retrieves the current height of the robot's body from the ground.</li>
+         <li><strong>GetFootRaiseHeight</strong>: GetFootRaiseHeight retrieves the current height at which the robot's feet are raised during movement.</li>
+         <li><strong>GetSpeedLevel</strong>: GetSpeedLevel retrieves the current speed level of the robot.</li>
+         <li><strong>SwitchJoystick</strong>: SwitchJoystick allows the robot to change its control mode between different input devices, like joysticks.</li>
+         <li><strong>Pose</strong>: Pose mode refers to the robot assuming a specific posture or configuration of its joints.</li>
+         <li><strong>Scrape</strong>: Scrape mode allows the robot to perform scraping movements, typically with its feet or body.</li>
+         <li><strong>FrontFlip</strong>: FrontFlip makes the robot perform a forward flip.</li>
+         <li><strong>FrontJump</strong>: FrontJump makes the robot perform a forward jump.</li>
+         <li><strong>FrontPounce</strong>: FrontPounce is a mode where the robot performs a forward pounce or leap.</li>
+         <li><strong>WiggleHips</strong>: WiggleHips makes the robot perform a hip-wiggling motion, typically for dancing.</li>
+         <li><strong>GetState</strong>: GetState retrieves the current state or status of the robot, including its posture or mode.</li>
+         <li><strong>EconomicGait</strong>: EconomicGait is a mode that adjusts the robot's gait to optimize energy efficiency.</li>
+         <li><strong>FingerHeart</strong>: FingerHeart mode allows the robot to make a heart shape with its fingers, typically for gestures.</li>
+         <li><strong>Dance3</strong>: Dance3 is yet another specific dance routine that the robot performs.</li>
+         <li><strong>Dance4</strong>: Dance4 is a fourth unique dance routine.</li>
+         <li><strong>HopSpinLeft</strong>: HopSpinLeft makes the robot hop and spin to the left.</li>
+         <li><strong>HopSpinRight</strong>: HopSpinRight makes the robot hop and spin to the right.</li>
+         <li><strong>LeftFlip</strong>: LeftFlip makes the robot perform a flip to the left.</li>
+         <li><strong>BackFlip</strong>: BackFlip makes the robot perform a backward flip.</li>
+         <li><strong>FreeWalk</strong>: FreeWalk allows the robot to walk freely without following a specific gait pattern.</li>
+         <li><strong>FreeBound</strong>: FreeBound allows the robot to perform bounding or hopping movements in any direction.</li>
+         <li><strong>FreeJump</strong>: FreeJump lets the robot perform a jump in any direction or height.</li>
+         <li><strong>FreeAvoid</strong>: FreeAvoid enables the robot to navigate and avoid obstacles in its path.</li>
+         <li><strong>WalkStair</strong>: WalkStair allows the robot to climb stairs in a walking pattern.</li>
+         <li><strong>WalkUpRight</strong>: WalkUpRight lets the robot walk in a more upright posture, suitable for climbing or walking in tight spaces.</li>
+         <li><strong>CrossStep</strong>: CrossStep involves the robot crossing one leg over the other in its gait.</li>
+       </ul>
+       </details>
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /mode go2_interfaces/srv/Mode "mode: 'hello'"
+
+
+Pose
+----
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  bool           flag      true ~ false
+  ============== ========= ============
+
+  Description
+    Set true to pose and false to restore
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /pose go2_interfaces/srv/Pose "flag: true"
+
+
+Speed Level
+-----------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  int32           level     -1 ~ 1
+  ============== ========= ============
+
+  Description
+    Set the speed range.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /speed_level go2_interfaces/srv/SpeedLevel "level: 1"
+
+Switch Gait
+-----------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  int32           gait      0 ~ 4
+  ============== ========= ============
+
+  Description
+    This service allows switching the robot's gait to one of the predefined modes.
+
+      - `IDLE (0)`: The robot is idle.
+      - `TROT (1)`: The robot moves with a trot gait.
+      - `TROT_RUN_NING (2)`: A specific variation of the trot gait.
+      - `FORWARD_CLIMBING_MODE (3)`: The robot switches to a climbing mode for forward movement.
+      - `REVERSE_CLIMBING_MODE (4)`: The robot switches to a reverse climbing mode.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /switch_gait go2_interfaces/srv/SwitchGait "gait: 1"
+
+Switch Joystick
+---------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  bool           flag      true ~ false
+  ============== ========= ============
+
+  Description
+    Native remote control response switch.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /switch_joystick go2_interfaces/srv/SwitchJoystick "flag: true"
+
+
+Go2 Switch Obstacle Avoidance
+*****************************
+
+Get Obstacle Avoidance
+----------------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  N/A            N/A        N/A  
+  ============== ========= ============
+
+  Description
+    Get switch obstacle avoidance.
+
+  Response
+   ============== =========
+   Type           Parameter
+   -------------- ---------
+   bool           success
+   string         message
+   int32          enable
+   ============== =========
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /get_obstacle_avoidance go2_interfaces/srv/GetObstacleAvoidance
+
+
+Set Obstacle Avoidance
+----------------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  int32          enable     0 ~ 1
+  ============== ========= ============
+
+  Description
+    Set switch obstacle avoidance.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /set_obstacle_avoidance go2_interfaces/srv/SetObstacleAvoidance "enable: 1"
+
+
+Go2 TTS
+*******
+
+TTS
+---
+
+  ============== =========
+  Type           Parameter
+  -------------- ---------
+  string         text
+  ============== =========
+
+  Description
+    Text to speech.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /say go2_interfaces/srv/Say "text: 'Hello, I am Go2 robot'"
+
+
+Go2 VUI
+*******
+
+Get Brightness
+--------------
+
+  ============== ========= ============
+  Type           Parameter Range
+  -------------- --------- ------------
+  N/A            N/A        N/A  
+  ============== ========= ============
+
+  Description
+    Get the brightness of the screen.
+
+  Response
+
+   ============== ===========
+   Type           Parameter
+   -------------- -----------
+   bool           success
+   string         message
+   int32          brightness
+   ============== ===========
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /get_brightness go2_interfaces/srv/GetBrightness
+
+Get Switch
+-----------
+
+   ============== ========= ============
+   Type           Parameter Range
+   -------------- --------- ------------
+   N/A            N/A        N/A  
+   ============== ========= ============
+   
+   Description
+      Get the switch status.
+   
+   Response
+   
+    ============== =========
+    Type           Parameter
+    -------------- ---------
+    bool           success
+    string         message
+    int32          enable
+    ============== =========
+   
+   Usage Example
+      .. code-block:: bash
+   
+         ros2 service call /get_switch go2_interfaces/srv/GetSwitch
+
+Get Volume
+-----------
+
+   ============== ========= ============
+   Type           Parameter Range
+   -------------- --------- ------------
+   N/A            N/A        N/A  
+   ============== ========= ============
+   
+   Description
+      Get the volume of the robot.
+   
+   Response
+   
+    ============== =========
+    Type           Parameter
+    -------------- ---------
+    bool           success
+    string         message
+    int32          volume
+    ============== =========
+   
+   Usage Example
+      .. code-block:: bash
+   
+         ros2 service call /get_volume go2_interfaces/srv/GetVolume
+
+Set Brightness
+--------------
+
+  ============== =========== ============
+  Type           Parameter   Range
+  -------------- ----------- ------------
+  int32          brightness  0 ~ 10
+  ============== =========== ============
+
+  Description
+    Set the brightness of the light.
+
+  Usage Example
+    .. code-block:: bash
+
+      ros2 service call /set_brightness go2_interfaces/srv/SetBrightness "brightness: 5"
+
+Set Switch
+-----------
+
+   ============== ========= ============
+   Type           Parameter Range
+   -------------- --------- ------------
+   int32          enable     0 ~ 1
+   ============== ========= ============
+   
+   Description
+      Set the switch status.
+   
+   Usage Example
+      .. code-block:: bash
+   
+         ros2 service call /set_switch go2_interfaces/srv/SetSwitch "enable: 1"
+
+Set Volume
+-----------
+
+   ============== ========= ============
+   Type           Parameter Range
+   -------------- --------- ------------
+   int32          volume     0 ~ 10
+   ============== ========= ============
+   
+   Description
+      Set the volume of the robot.
+   
+   Usage Example
+      .. code-block:: bash
+   
+         ros2 service call /set_volume go2_interfaces/srv/SetVolume "volume: 5"
