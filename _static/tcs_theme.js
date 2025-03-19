@@ -1,5 +1,6 @@
 var i;
 var contents = document.getElementsByClassName("content-collapse section");
+var savedVersion = "None";
 
 for (i = 0; i < contents.length; i++) {
   //Make sure the "content-collapse section" class is occurring in <div>
@@ -120,11 +121,14 @@ function addVersionDropdown(versions) {
 }
 
 function updateSidebarLinks(version) {
-  var savedVersion = localStorage.getItem("ros2_version") || "Humble";
+ 
 
-  console.log("Versión guardada: " + savedVersion);
+  if (savedVersion === version) {
+    return; 
+  }
+
+  savedVersion = localStorage.getItem("ros2_version") || "Humble";
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
-  console.log("Versión actdasdasual: " + version); 
   console.log("Número de enlaces encontrados: " + sidebarLinks.length);
 
   sidebarLinks.forEach(function(link) {
