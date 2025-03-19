@@ -1,0 +1,252 @@
+.. _humble_cli:
+
+Go2 CLI
+#######
+
+Overview
+********
+
+This section includes all the new commands that have been created for go2, making it easier to call all the services that you can find in the API Interfaces section.
+
+.. code-block:: bash
+
+   user@hostname:~$ ros2 go2 -h
+   usage: ros2 go2 [-h] Call `ros2 go2 <command> -h` for more detailed usage. ...
+
+   Various related sub-commands to go2 robot
+
+   options:
+   -h, --help            show this help message and exit
+
+   Commands:
+   body_height          Body Height
+   foot_raise_height    Foot Raise Height
+   obstacles_avoidance  SwitchObstaclesAvoidance
+   service              Service handler
+   tts                  Text to speech
+   vui                  VUI Interfaces
+
+   Call `ros2 go2 <command> -h` for more detailed usage.
+
+
+Go2 Body Height
+===============
+This command is used to modify the height of the go2 body relative to the ground, and also to obtain it. This command replaces the `set <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#body-height>`_ and `get <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#get-body-height>`_ commands in the API Interfaces section.
+
+.. code-block:: bash
+
+   user@hostname:~$ ros2 go2 body_height -h
+   usage: ros2 go2 body_height [-h] [--spin-time SPIN_TIME] [-s] [--no-daemon] {set,get} [VALUE]
+
+   Body Height
+
+   positional arguments:
+   {set,get}             Name of the service.
+   VALUE                 Height of the robot.
+
+   options:
+   -h, --help            show this help message and exit
+   --spin-time SPIN_TIME
+                           Spin time in seconds to wait for discovery (only applies when not using an already running daemon)
+   -s, --use-sim-time    Enable ROS simulation time
+   --no-daemon           Do not spawn nor use an already running daemon
+
+Example of use for the set command:
+
+.. code-block:: bash
+
+   ros2 go2 body_height set 0.01
+
+Example of use for the get command:
+
+.. code-block:: bash
+
+   ros2 go2 body_height get
+
+
+Go2 Foot Raise Height
+=====================
+This command is used to modify the height of the go2 foot relative to the ground, and also to obtain it. This command replaces the `set <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#foot-raise-height>`_ and `get <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#get-foot-raise-height>`_ commands in the API Interfaces section.
+
+.. code-block:: bash
+
+   user@hostname:~$ ros2 go2 foot_raise_height -h
+   usage: ros2 go2 foot_raise_height [-h] [--spin-time SPIN_TIME] [-s] [--no-daemon] {set,get} [VALUE]
+
+   Foot Raise Height
+
+   positional arguments:
+   {set,get}             Name of the service.
+   VALUE                 Height of the foot.
+
+   options:
+   -h, --help            show this help message and exit
+   --spin-time SPIN_TIME
+                           Spin time in seconds to wait for discovery (only applies when not using an already running daemon)
+   -s, --use-sim-time    Enable ROS simulation time
+   --no-daemon           Do not spawn nor use an already running daemon
+
+Example of use for the set command:
+
+.. code-block:: bash
+
+   ros2 go2 foot_raise_height set 0.01
+
+Example of use for the get command:
+
+.. code-block:: bash
+
+   ros2 go2 foot_raise_height get
+
+Go2 Obstacles Avoidance
+=======================
+This command is used to enable or disable the obstacle avoidance system. This command replaces the `switch <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#obstacles-go2-switch-obstacle-avoidance>`_ command in the API Interfaces section.
+
+.. code-block:: bash
+
+   user@hostname:~$ ros2 go2 obstacles_avoidance -h
+   usage: ros2 go2 obstacles_avoidance [-h] [--spin-time SPIN_TIME] [-s] [--no-daemon] {start,stop,get}
+
+   SwitchObstaclesAvoidance
+
+   positional arguments:
+   {start,stop,get}      Name of the service.
+
+   options:
+   -h, --help            show this help message and exit
+   --spin-time SPIN_TIME
+                           Spin time in seconds to wait for discovery (only applies when not using an already running daemon)
+   -s, --use-sim-time    Enable ROS simulation time
+   --no-daemon           Do not spawn nor use an already running daemon
+
+Example of use for the start command:
+
+.. code-block:: bash
+
+   ros2 go2 obstacles_avoidance start
+
+Example of use for the stop command:
+
+.. code-block:: bash
+
+   ros2 go2 obstacles_avoidance stop
+
+Example of use for the get command:
+
+.. code-block:: bash
+
+   ros2 go2 obstacles_avoidance get
+
+Go2 Service
+===========
+This command lists all the modes that can be configured for the robot. These include hello, dance, sit, and more. They are the same as in `this section <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#mode>`_, where you can find more detailed information.
+
+.. code-block:: bash
+
+   user@hostname:~$ ros2 go2 service -h
+   usage: ros2 go2 service [-h] [--spin-time SPIN_TIME] [-s] [--no-daemon] NAME
+
+   Service handler
+
+   positional arguments:
+   NAME                  Name of the service.
+
+   options:
+   -h, --help            show this help message and exit
+   --spin-time SPIN_TIME
+                           Spin time in seconds to wait for discovery (only applies when not using an already running daemon)
+   -s, --use-sim-time    Enable ROS simulation time
+   --no-daemon           Do not spawn nor use an already running daemon
+
+The available options are as follows:
+
+.. code-block:: bash
+
+   user@hostname:~$ ros2 go2 service 
+   back_flip        dance2           free_bound       front_pounce     --no-daemon      --spin-time      --use-sim-time   walk_forward     walk_up
+   balance_stand    dance3           free_jump        hello            rise_sit         stand_down       walk_backward    walk_left        walk_up_left
+   cross_step       dance4           free_walk        hop_spin_left    -s               stand_up         walk_down        walk_right       walk_up_right
+   damp             finger_heart     front_flip       hop_spin_right   scrape           stop_move        walk_down_left   walk_stair       wallow
+   dance1           free_avoid       front_jump       left_flip        sit              stretch          walk_down_right  walk_stop
+
+I give an example of the use of one of the commands. Try it and say hello to your robot:
+
+.. code-block:: bash
+
+   ros2 go2 service hello
+
+
+Go2 Text to Speech
+==================
+This command is used to make the robot speak. This command replaces the `say <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#go2-tts>`_ command in the API Interfaces section.
+
+.. code-block:: bash
+
+   user@hostname:~$ ros2 go2 tts -h
+   usage: ros2 go2 tts [-h] [--spin-time SPIN_TIME] [-s] [--no-daemon] TEXT [TEXT ...]
+
+   Text to speech
+
+   positional arguments:
+   TEXT                  Text to be spoken.
+
+   options:
+   -h, --help            show this help message and exit
+   --spin-time SPIN_TIME
+                           Spin time in seconds to wait for discovery (only applies when not using an already running daemon)
+   -s, --use-sim-time    Enable ROS simulation time
+   --no-daemon           Do not spawn nor use an already running daemon
+
+To use this command, you don't need to add 'text' or "text." Any arguments you add after tts will be taken as the text you want the robot to say. Example usage:
+
+.. code-block:: bash
+
+   ros2 go2 tts Hello, I am Go2 Robot
+
+
+Go2 VUI Interfaces
+==================
+This command is used to know the status of the robot, its volume and light, and also to modify it. This command replaces the `get <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#go2-vui>`_ and `set <https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#vui>`_ commands in the API Interfaces section.
+
+.. code-block:: bash
+
+   juanca@HUMBLE:~$ ros2 go2 vui -h
+   usage: ros2 go2 vui [-h] [--spin-time SPIN_TIME] [-s] [--no-daemon] {set_brightness,get_brightness,set_volume,get_volume} [VALUE]
+
+   VUI Interfaces
+
+   positional arguments:
+   {set_brightness,get_brightness,set_volume,get_volume}
+                           Name of the vui service.
+   VALUE                 Value of the brightness or volume.
+
+   options:
+   -h, --help            show this help message and exit
+   --spin-time SPIN_TIME
+                           Spin time in seconds to wait for discovery (only applies when not using an already running daemon)
+   -s, --use-sim-time    Enable ROS simulation time
+   --no-daemon           Do not spawn nor use an already running daemon
+
+Example of use for the set_brightness command:
+
+.. code-block:: bash
+
+   ros2 go2 vui set_brightness 5
+
+Example of use for the get_brightness command:
+
+.. code-block:: bash
+
+   ros2 go2 vui get_brightness
+
+Example of use for the set_volume command:
+
+.. code-block:: bash
+
+   ros2 go2 vui set_volume 5
+
+Example of use for the get_volume command:
+
+.. code-block:: bash
+
+   ros2 go2 vui get_volume

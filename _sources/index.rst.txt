@@ -30,4 +30,5 @@ We hope that this repository will be of great help to the entire community, and 
 
    humble/build/index.rst
    humble/api_interfaces/index.rst
+   humble/go2cli/index.rst
    humble/about/index.rst
