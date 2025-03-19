@@ -4,9 +4,9 @@ Go2 CLI
 #######
 
 Overview
-********
+=========
 
-This section includes all the new commands that have been created for go2, making it easier to call all the services that you can find in the API Interfaces section.
+This section includes all the new commands that have been created for go2, making it easier to call all the services that you can find in the `API Interfaces section <file:///home/juanca/Unitree-Go2-Robot.github.io/_build/html/humble/api_interfaces/index.html>`_.
 
 .. code-block:: bash
 

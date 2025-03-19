@@ -101,15 +101,13 @@
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Go2 CLI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#go2-body-height">Go2 Body Height</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#go2-foot-raise-height">Go2 Foot Raise Height</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#go2-obstacles-avoidance">Go2 Obstacles Avoidance</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#go2-service">Go2 Service</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#go2-text-to-speech">Go2 Text to Speech</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#go2-vui-interfaces">Go2 VUI Interfaces</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-body-height">Go2 Body Height</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-foot-raise-height">Go2 Foot Raise Height</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-obstacles-avoidance">Go2 Obstacles Avoidance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-service">Go2 Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-text-to-speech">Go2 Text to Speech</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#go2-vui-interfaces">Go2 VUI Interfaces</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../about/index.html">About</a><ul>
@@ -149,7 +147,7 @@
 <span id="humble-cli"></span><h1>Go2 CLI<a class="headerlink" href="#go2-cli" title="Link to this heading"></a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
-<p>This section includes all the new commands that have been created for go2, making it easier to call all the services that you can find in the API Interfaces section.</p>
+<p>This section includes all the new commands that have been created for go2, making it easier to call all the services that you can find in the <a class="reference external" href="file:///home/juanca/Unitree-Go2-Robot.github.io/_build/html/humble/api_interfaces/index.html">API Interfaces section</a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@hostname:~$<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>-h
 usage:<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span>Call<span class="w"> </span><span class="sb">`</span>ros2<span class="w"> </span>go2<span class="w"> </span>&lt;command&gt;<span class="w"> </span>-h<span class="sb">`</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>detailed<span class="w"> </span>usage.<span class="w"> </span>...
 
@@ -169,8 +167,9 @@ vui<span class="w">                  </span>VUI<span class="w"> </span>Interface
 Call<span class="w"> </span><span class="sb">`</span>ros2<span class="w"> </span>go2<span class="w"> </span>&lt;command&gt;<span class="w"> </span>-h<span class="sb">`</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>detailed<span class="w"> </span>usage.
 </pre></div>
 </div>
+</section>
 <section id="go2-body-height">
-<h3>Go2 Body Height<a class="headerlink" href="#go2-body-height" title="Link to this heading"></a></h3>
+<h2>Go2 Body Height<a class="headerlink" href="#go2-body-height" title="Link to this heading"></a></h2>
 <p>This command is used to modify the height of the go2 body relative to the ground, and also to obtain it. This command replaces the <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#body-height">set</a> and <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#get-body-height">get</a> commands in the API Interfaces section.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@hostname:~$<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>body_height<span class="w"> </span>-h
 usage:<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>body_height<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--spin-time<span class="w"> </span>SPIN_TIME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-s<span class="o">]</span><span class="w"> </span><span class="o">[</span>--no-daemon<span class="o">]</span><span class="w"> </span><span class="o">{</span>set,get<span class="o">}</span><span class="w"> </span><span class="o">[</span>VALUE<span class="o">]</span>
@@ -199,7 +198,7 @@ options:
 </div>
 </section>
 <section id="go2-foot-raise-height">
-<h3>Go2 Foot Raise Height<a class="headerlink" href="#go2-foot-raise-height" title="Link to this heading"></a></h3>
+<h2>Go2 Foot Raise Height<a class="headerlink" href="#go2-foot-raise-height" title="Link to this heading"></a></h2>
 <p>This command is used to modify the height of the go2 foot relative to the ground, and also to obtain it. This command replaces the <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#foot-raise-height">set</a> and <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#get-foot-raise-height">get</a> commands in the API Interfaces section.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@hostname:~$<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>foot_raise_height<span class="w"> </span>-h
 usage:<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>foot_raise_height<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--spin-time<span class="w"> </span>SPIN_TIME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-s<span class="o">]</span><span class="w"> </span><span class="o">[</span>--no-daemon<span class="o">]</span><span class="w"> </span><span class="o">{</span>set,get<span class="o">}</span><span class="w"> </span><span class="o">[</span>VALUE<span class="o">]</span>
@@ -228,7 +227,7 @@ options:
 </div>
 </section>
 <section id="go2-obstacles-avoidance">
-<h3>Go2 Obstacles Avoidance<a class="headerlink" href="#go2-obstacles-avoidance" title="Link to this heading"></a></h3>
+<h2>Go2 Obstacles Avoidance<a class="headerlink" href="#go2-obstacles-avoidance" title="Link to this heading"></a></h2>
 <p>This command is used to enable or disable the obstacle avoidance system. This command replaces the <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#obstacles-go2-switch-obstacle-avoidance">switch</a> command in the API Interfaces section.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@hostname:~$<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>obstacles_avoidance<span class="w"> </span>-h
 usage:<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>obstacles_avoidance<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--spin-time<span class="w"> </span>SPIN_TIME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-s<span class="o">]</span><span class="w"> </span><span class="o">[</span>--no-daemon<span class="o">]</span><span class="w"> </span><span class="o">{</span>start,stop,get<span class="o">}</span>
@@ -260,7 +259,7 @@ options:
 </div>
 </section>
 <section id="go2-service">
-<h3>Go2 Service<a class="headerlink" href="#go2-service" title="Link to this heading"></a></h3>
+<h2>Go2 Service<a class="headerlink" href="#go2-service" title="Link to this heading"></a></h2>
 <p>This command lists all the modes that can be configured for the robot. These include hello, dance, sit, and more. They are the same as in <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#mode">this section</a>, where you can find more detailed information.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@hostname:~$<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>service<span class="w"> </span>-h
 usage:<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>service<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--spin-time<span class="w"> </span>SPIN_TIME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-s<span class="o">]</span><span class="w"> </span><span class="o">[</span>--no-daemon<span class="o">]</span><span class="w"> </span>NAME
@@ -293,7 +292,7 @@ dance1<span class="w">           </span>free_avoid<span class="w">       </span>
 </div>
 </section>
 <section id="go2-text-to-speech">
-<h3>Go2 Text to Speech<a class="headerlink" href="#go2-text-to-speech" title="Link to this heading"></a></h3>
+<h2>Go2 Text to Speech<a class="headerlink" href="#go2-text-to-speech" title="Link to this heading"></a></h2>
 <p>This command is used to make the robot speak. This command replaces the <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#go2-tts">say</a> command in the API Interfaces section.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>user@hostname:~$<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>tts<span class="w"> </span>-h
 usage:<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>tts<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--spin-time<span class="w"> </span>SPIN_TIME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-s<span class="o">]</span><span class="w"> </span><span class="o">[</span>--no-daemon<span class="o">]</span><span class="w"> </span>TEXT<span class="w"> </span><span class="o">[</span>TEXT<span class="w"> </span>...<span class="o">]</span>
@@ -317,7 +316,7 @@ options:
 </div>
 </section>
 <section id="go2-vui-interfaces">
-<h3>Go2 VUI Interfaces<a class="headerlink" href="#go2-vui-interfaces" title="Link to this heading"></a></h3>
+<h2>Go2 VUI Interfaces<a class="headerlink" href="#go2-vui-interfaces" title="Link to this heading"></a></h2>
 <p>This command is used to know the status of the robot, its volume and light, and also to modify it. This command replaces the <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#go2-vui">get</a> and <a class="reference external" href="https://unitree-go2-robot.github.io/humble/api_interfaces/index.html#vui">set</a> commands in the API Interfaces section.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>juanca@HUMBLE:~$<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>vui<span class="w"> </span>-h
 usage:<span class="w"> </span>ros2<span class="w"> </span>go2<span class="w"> </span>vui<span class="w"> </span><span class="o">[</span>-h<span class="o">]</span><span class="w"> </span><span class="o">[</span>--spin-time<span class="w"> </span>SPIN_TIME<span class="o">]</span><span class="w"> </span><span class="o">[</span>-s<span class="o">]</span><span class="w"> </span><span class="o">[</span>--no-daemon<span class="o">]</span><span class="w"> </span><span class="o">{</span>set_brightness,get_brightness,set_volume,get_volume<span class="o">}</span><span class="w"> </span><span class="o">[</span>VALUE<span class="o">]</span>
@@ -353,7 +352,6 @@ options:
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>go2<span class="w"> </span>vui<span class="w"> </span>get_volume
 </pre></div>
 </div>
-</section>
 </section>
 </section>
 
