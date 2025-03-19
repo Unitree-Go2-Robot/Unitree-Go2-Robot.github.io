@@ -1,3 +1,5 @@
+.. orphan::
+
 .. _foxy_documentation_home:
 
 *****

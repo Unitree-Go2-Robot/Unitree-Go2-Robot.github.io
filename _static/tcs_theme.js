@@ -121,7 +121,9 @@ function addVersionDropdown(versions) {
 }
 
 function updateSidebarLinks(version) {
- 
+   
+  console.log("Versión actual: " + version);
+  console.log("Versión guardada: " + savedVersion);
 
   if (savedVersion === version) {
     return; 
