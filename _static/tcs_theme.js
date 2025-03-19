@@ -64,6 +64,7 @@ function addVersionDropdown(versions) {
   var currentVersionText = document.createElement("span");
   currentVersionText.className = "current-version";
 
+  // Obtener la versión actual desde el almacenamiento local o usar "Humble" como predeterminada
   var currentVersion = localStorage.getItem("ros2_version") || "Humble";
   currentVersionText.innerHTML = " (current: " + currentVersion + ")";
 
@@ -86,9 +87,10 @@ function addVersionDropdown(versions) {
     versionLink.style.display = "block";
     versionLink.style.padding = "5px 0";
     versionLink.style.textDecoration = "none";
-    versionLink.style.color = "black";
+    versionLink.style.color = "white";
 
     versionLink.addEventListener("click", function() {
+      // Guardar la versión actual en el almacenamiento local
       localStorage.setItem("ros2_version", version.name);
       currentVersionText.innerHTML = " (current: " + version.name + ")";
       versionList.style.maxHeight = "0";
@@ -118,10 +120,12 @@ function addVersionDropdown(versions) {
 }
 
 function updateSidebarLinks(version) {
-  
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
+  console.log("Versión actual: " + version); 
+  console.log("Número de enlaces encontrados: " + sidebarLinks.length);
 
   sidebarLinks.forEach(function(link) {
+    console.log("Enlace original: " + link.href); 
 
     var url = new URL(link.href);
     var pathParts = url.pathname.split('/');
@@ -137,9 +141,8 @@ function updateSidebarLinks(version) {
     }
 
     link.href = url.toString();
+    console.log("Enlace actualizado: " + link.href);  //
   });
-
-  localStorage.setItem("ros2_version", version);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
