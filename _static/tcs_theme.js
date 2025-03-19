@@ -120,11 +120,7 @@ function addVersionDropdown(versions) {
 }
 
 function updateSidebarLinks(version) {
-  var savedVersion = localStorage.getItem("ros2_version") || "Humble";
 
-  if (savedVersion === version) {
-    return; 
-  }
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
   console.log("Versión actdasdasual: " + version); 
   console.log("Número de enlaces encontrados: " + sidebarLinks.length);
