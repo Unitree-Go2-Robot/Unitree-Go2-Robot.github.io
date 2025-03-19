@@ -126,7 +126,7 @@ function updateSidebarLinks(version) {
     return; 
   }
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
-  console.log("Versión actual: " + version); 
+  console.log("Versión actdasdasual: " + version); 
   console.log("Número de enlaces encontrados: " + sidebarLinks.length);
 
   sidebarLinks.forEach(function(link) {
