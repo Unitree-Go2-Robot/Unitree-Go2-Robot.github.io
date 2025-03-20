@@ -125,7 +125,7 @@ function updateSidebarLinks(version) {
   savedVersion = localStorage.getItem("ros2_version") || "Humble";
 
   if (globalVersion === savedVersion) {
-    return
+    return;
   }
 
   localStorage.setItem("globalVersion", savedVersion);
