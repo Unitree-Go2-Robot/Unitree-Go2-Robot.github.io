@@ -123,10 +123,15 @@ function addVersionDropdown(versions) {
 function updateSidebarLinks(version) {
   
   savedVersion = localStorage.getItem("ros2_version") || "Humble";
+  console.log("1. savedVersion: " + savedVersion);
+  console.log("1. globalVersion: " + globalVersion);
 
   if (globalVersion === savedVersion) {
     return;
   }
+
+  console.log("2. savedVersion: " + savedVersion);
+  console.log("2. globalVersion: " + globalVersion);
 
   localStorage.setItem("globalVersion", savedVersion);
 
