@@ -1,5 +1,6 @@
 var i;
 var contents = document.getElementsByClassName("content-collapse section");
+var globalVersion = localStorage.getItem("globalVersion") || "Humble";
 
 for (i = 0; i < contents.length; i++) {
   //Make sure the "content-collapse section" class is occurring in <div>
@@ -120,8 +121,15 @@ function addVersionDropdown(versions) {
 }
 
 function updateSidebarLinks(version) {
-
+  
   savedVersion = localStorage.getItem("ros2_version") || "Humble";
+
+  if (globalVersion === savedVersion) {
+    return
+  }
+
+  localStorage.setItem("globalVersion", savedVersion);
+
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
 
   sidebarLinks.forEach(function(link) {
