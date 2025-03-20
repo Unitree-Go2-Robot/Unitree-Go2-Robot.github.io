@@ -49,7 +49,7 @@ for (i = 0; i < contents.length; i++) {
   }
 }
 
-function addVersionDropdown(versions) {
+function (versions) {
   var versionContainer = document.createElement("div");
   versionContainer.className = "version-dropdown";
   versionContainer.style.margin = "10px";
@@ -123,18 +123,6 @@ function addVersionDropdown(versions) {
 function updateSidebarLinks(version) {
   
   savedVersion = localStorage.getItem("ros2_version") || "Humble";
-  console.log("1. savedVersion: " + savedVersion);
-  console.log("1. globalVersion: " + globalVersion);
-
-  if (globalVersion === savedVersion) {
-    return;
-  }
-
-  console.log("2. savedVersion: " + savedVersion);
-  console.log("2. globalVersion: " + globalVersion);
-
-  localStorage.setItem("globalVersion", savedVersion);
-
   var sidebarLinks = document.querySelectorAll(".wy-side-scroll a");
 
   sidebarLinks.forEach(function(link) {
